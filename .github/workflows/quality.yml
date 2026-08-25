@@ -21,12 +21,15 @@ jobs:
         run: |
           node --check js/content.js
           node --check js/app.js
+          node --check js/audio-premium.js
           node --check js/config.js
           node --check sw.js
       - name: Check required files
         run: |
           test -f index.html
           test -f css/styles.css
+          test -f css/refinements.css
+          test -f js/audio-premium.js
           test -f manifest.webmanifest
           test -f assets/favicon.svg
           test -f assets/social-preview.svg
@@ -47,5 +50,8 @@ jobs:
                   missing.append(ref)
           if missing:
               raise SystemExit('Missing local references: '+', '.join(missing))
+          for path in ['css/refinements.css','js/audio-premium.js']:
+              if not (root/path).exists():
+                  raise SystemExit('Missing dynamically loaded refinement: '+path)
           print('Local references OK')
           PY
