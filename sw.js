@@ -1,5 +1,5 @@
-const CACHE='sono-em-dia-v3';
-const ASSETS=['./','./index.html','./css/styles.css','./css/refinements.css','./js/content.js','./js/app.js','./js/audio-premium.js','./assets/favicon.svg','./assets/social-preview.svg','./manifest.webmanifest'];
+const CACHE='sono-em-dia-v4';
+const ASSETS=['./','./index.html','./css/styles.css','./css/refinements.css','./js/content.js','./js/app.js','./js/audio-premium.js','./js/nav-fix.js','./assets/favicon.svg','./assets/social-preview.svg','./manifest.webmanifest'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(
@@ -27,6 +27,9 @@ function patchHtml(html){
   }
   if(!html.includes('js/audio-premium.js')){
     html=html.replace('</body>','  <script src="js/audio-premium.js"></script>\n</body>');
+  }
+  if(!html.includes('js/nav-fix.js')){
+    html=html.replace('</body>','  <script src="js/nav-fix.js"></script>\n</body>');
   }
   return html;
 }
