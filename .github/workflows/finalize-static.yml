@@ -1,0 +1,61 @@
+name: Finalize static experience
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/social-preview.svg'
+      - 'css/product-completion.css'
+      - 'css/refinements.css'
+      - 'js/product-completion.js'
+      - 'js/audio-premium.js'
+      - '.github/workflows/finalize-static.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SVG renderer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y librsvg2-bin
+      - name: Generate social preview PNG
+        run: rsvg-convert -w 1200 -h 630 assets/social-preview.svg -o assets/social-preview.png
+      - name: Patch public HTML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          if 'css/refinements.css' not in s:
+              s=s.replace('<link rel="stylesheet" href="css/styles.css">','<link rel="stylesheet" href="css/styles.css">\n  <link rel="stylesheet" href="css/refinements.css">')
+          if 'css/product-completion.css' not in s:
+              s=s.replace('</head>','  <link rel="stylesheet" href="css/product-completion.css">\n</head>')
+          s=s.replace('<meta property="og:image" content="assets/social-preview.svg">','<meta property="og:image" content="https://ricmurtapsicologia.github.io/Sleepy-/assets/social-preview.png">')
+          if 'property="og:image:width"' not in s:
+              s=s.replace('<meta property="og:image" content="https://ricmurtapsicologia.github.io/Sleepy-/assets/social-preview.png">','<meta property="og:image" content="https://ricmurtapsicologia.github.io/Sleepy-/assets/social-preview.png">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="630">\n  <meta property="og:image:type" content="image/png">')
+          if 'rel="canonical"' not in s:
+              s=s.replace('<title>Sono em Dia | Qualidade do Sono</title>','<title>Sono em Dia | Qualidade do Sono</title>\n  <link rel="canonical" href="https://ricmurtapsicologia.github.io/Sleepy-/">')
+          s=s.replace('<a class="brand" href="#inicio" aria-label="Sono em Dia — início">','<a class="brand" href="#inicio" data-nav="inicio" aria-label="Sono em Dia — início">')
+          if 'js/product-completion.js' not in s:
+              s=s.replace('<script src="js/app.js"></script>','<script src="js/app.js"></script>\n  <script src="js/product-completion.js"></script>')
+          if 'js/audio-premium.js' not in s:
+              s=s.replace('</body>','  <script src="js/audio-premium.js"></script>\n</body>')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit finalized public assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html assets/social-preview.png
+          if git diff --cached --quiet; then
+            echo "No static changes"
+            exit 0
+          fi
+          git commit -m "build: finalizar experiência pública e preview social"
+          git push
