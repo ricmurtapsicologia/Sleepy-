@@ -1,5 +1,5 @@
-const CACHE='sono-em-dia-v5';
-const ASSETS=['./','./index.html','./css/styles.css','./css/refinements.css','./css/product-completion.css','./js/content.js','./js/app.js','./js/product-completion.js','./js/audio-premium.js','./js/nav-fix.js','./assets/favicon.svg','./assets/social-preview.svg','./manifest.webmanifest'];
+const CACHE='sono-em-dia-v6';
+const ASSETS=['./','./index.html','./css/styles.css','./css/refinements.css','./css/product-completion.css','./css/cognitive.css','./js/content.js','./js/app.js','./js/product-completion.js','./js/audio-premium.js','./js/nav-fix.js','./assets/favicon.svg','./assets/social-preview.svg','./manifest.webmanifest'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting()));
@@ -18,6 +18,7 @@ self.addEventListener('activate',event=>{
 function patchHtml(html){
   if(!html.includes('css/refinements.css'))html=html.replace('</head>','  <link rel="stylesheet" href="css/refinements.css">\n</head>');
   if(!html.includes('css/product-completion.css'))html=html.replace('</head>','  <link rel="stylesheet" href="css/product-completion.css">\n</head>');
+  if(!html.includes('css/cognitive.css'))html=html.replace('</head>','  <link rel="stylesheet" href="css/cognitive.css">\n</head>');
   if(!html.includes('js/product-completion.js'))html=html.replace('</body>','  <script src="js/product-completion.js"></script>\n</body>');
   if(!html.includes('js/audio-premium.js'))html=html.replace('</body>','  <script src="js/audio-premium.js"></script>\n</body>');
   if(!html.includes('js/nav-fix.js'))html=html.replace('</body>','  <script src="js/nav-fix.js"></script>\n</body>');
