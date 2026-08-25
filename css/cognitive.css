@@ -1,0 +1,166 @@
+/* Camada de ergonomia cognitiva — Sono em Dia */
+
+body[data-experience="new"] #inicio .hero {
+  grid-template-columns: minmax(0, 640px) !important;
+  justify-content: center;
+  min-height: calc(100dvh - 96px);
+  align-items: center;
+  padding-top: clamp(2rem, 7vh, 5rem);
+  padding-bottom: clamp(5rem, 12vh, 8rem);
+}
+
+body[data-experience="new"] #inicio .hero-copy {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+body[data-experience="new"] #inicio .hero-copy .eyebrow {
+  margin-bottom: .85rem;
+}
+
+body[data-experience="new"] #homeTitle {
+  max-width: 12ch;
+  text-wrap: balance;
+}
+
+body[data-experience="new"] .hero-lead {
+  max-width: 42rem;
+  font-size: clamp(1rem, 2vw, 1.16rem);
+}
+
+body[data-experience="new"] .hero-actions {
+  margin-top: 1.6rem;
+  max-width: 28rem;
+}
+
+body[data-experience="new"] .hero-actions .button {
+  width: 100%;
+}
+
+body[data-experience="new"] #continueJourneyBtn[data-empty="true"],
+body[data-experience="new"] .hero-panel,
+body[data-experience="new"] .principles,
+body[data-experience="new"] #howToUse,
+body[data-experience="new"] .bottom-nav,
+body[data-experience="new"] #shareBtn,
+body[data-experience="new"] .footer {
+  display: none !important;
+}
+
+.entry-audio {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-top: 1.15rem;
+  max-width: 28rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line, rgba(127,127,127,.18));
+}
+
+.entry-audio-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .12rem;
+}
+
+.entry-audio-copy strong {
+  font-size: .96rem;
+  font-weight: 650;
+}
+
+.entry-audio-copy span {
+  font-size: .82rem;
+  opacity: .7;
+}
+
+.entry-audio .audio-button {
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
+body[data-experience="returning"] #inicio .hero,
+body[data-experience="returning"] #inicio .principles,
+body[data-experience="returning"] #howToUse {
+  display: none !important;
+}
+
+body[data-experience="returning"] #inicio #homeDashboard {
+  display: grid;
+  padding-top: clamp(2rem, 5vw, 4rem);
+  padding-bottom: clamp(7rem, 12vw, 10rem);
+}
+
+body[data-experience="returning"] #homeDashboard > article {
+  display: none;
+}
+
+body[data-experience="returning"] #homeDashboard > article[data-next-action="true"],
+body[data-experience="returning"] #homeDashboard > article[data-supporting-focus="true"] {
+  display: block;
+}
+
+body[data-experience="returning"] #homeDashboard > article[data-next-action="true"] {
+  grid-column: 1 / -1;
+  max-width: 680px;
+}
+
+body[data-experience="returning"] #homeDashboard > article[data-supporting-focus="true"] {
+  grid-column: 1 / -1;
+  max-width: 680px;
+  opacity: .92;
+}
+
+body[data-active-view="avaliacao"] .bottom-nav,
+body[data-active-view="mapa"] .bottom-nav,
+body[data-active-view="audio"] .bottom-nav {
+  display: none !important;
+}
+
+body[data-active-view="avaliacao"] .footer,
+body[data-active-view="mapa"] .footer,
+body[data-active-view="audio"] .footer {
+  display: none !important;
+}
+
+body[data-active-view="avaliacao"] #main,
+body[data-active-view="mapa"] #main,
+body[data-active-view="audio"] #main {
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 700px) {
+  body[data-experience="new"] .topbar {
+    min-height: 64px;
+  }
+
+  body[data-experience="new"] #inicio .hero {
+    min-height: calc(100dvh - 64px);
+    padding-top: 1.4rem;
+    padding-bottom: 2.5rem;
+  }
+
+  body[data-experience="new"] #homeTitle {
+    font-size: clamp(2.25rem, 12vw, 3.35rem);
+    line-height: 1.02;
+  }
+
+  body[data-experience="new"] .hero-lead {
+    font-size: 1rem;
+    line-height: 1.55;
+    max-width: 34rem;
+  }
+
+  body[data-experience="new"] .privacy-note {
+    margin-top: .9rem;
+  }
+
+  .entry-audio {
+    margin-top: .85rem;
+  }
+
+  body[data-experience="returning"] #homeDashboard {
+    grid-template-columns: 1fr;
+    gap: .9rem;
+  }
+}
