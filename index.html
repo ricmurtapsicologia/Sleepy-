@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f5f1e9">
+  <meta name="description" content="Uma jornada baseada em ciência para compreender seu sono, desenvolver hábitos mais funcionais e cuidar melhor das suas noites.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sono em Dia | Qualidade do Sono">
+  <meta property="og:description" content="Entenda seu sono. Cuide melhor das suas noites.">
+  <meta property="og:image" content="assets/social-preview.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Sono em Dia | Qualidade do Sono</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+  <header class="topbar" aria-label="Cabeçalho principal">
+    <a class="brand" href="#inicio" aria-label="Sono em Dia — início">
+      <span class="brand-mark" aria-hidden="true">◌</span>
+      <span><strong>Sono em Dia</strong><small>ciência • rotina • cuidado</small></span>
+    </a>
+    <div class="topbar-actions">
+      <button class="icon-button" id="shareBtn" type="button" aria-label="Compartilhar Sono em Dia" title="Compartilhar">↗</button>
+      <button class="icon-button" id="themeBtn" type="button" aria-label="Alternar modo de exibição" title="Alternar tema">◐</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="view active" id="inicio" data-view="inicio" aria-labelledby="homeTitle">
+      <div class="hero shell">
+        <div class="hero-copy">
+          <span class="eyebrow">QUALIDADE DO SONO</span>
+          <h1 id="homeTitle">Entenda seu sono.<br>Cuide melhor das suas noites.</h1>
+          <p class="hero-lead">Uma jornada guiada para reconhecer padrões, reduzir a luta com o sono e construir uma rotina mais funcional — sem transformar dormir em desempenho.</p>
+          <div class="hero-actions">
+            <button class="button primary" id="startJourneyBtn" type="button">Começar minha jornada</button>
+            <button class="button ghost" id="continueJourneyBtn" type="button">Já comecei — continuar</button>
+          </div>
+          <p class="privacy-note">Seus registros ficam neste dispositivo. Você pode apagá-los quando quiser.</p>
+        </div>
+        <div class="hero-panel" aria-label="Resumo da proposta">
+          <div class="ambient-orb" aria-hidden="true"></div>
+          <p class="panel-kicker">Uma experiência em pequenos passos</p>
+          <div class="mini-flow">
+            <span>Compreender</span><i>→</i><span>Observar</span><i>→</i><span>Experimentar</span><i>→</i><span>Revisar</span>
+          </div>
+          <div class="hero-audio">
+            <div>
+              <small>OUÇA PRIMEIRO</small>
+              <strong>Bem-vindo ao Sono em Dia</strong>
+              <span>1–2 min • apresentação</span>
+            </div>
+            <button class="audio-button" type="button" data-audio="welcome" aria-label="Ouvir apresentação">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="shell home-grid" id="homeDashboard" hidden>
+        <article class="card prominent">
+          <div class="card-header"><span class="eyebrow">SEU SONO HOJE</span><span id="todayDate"></span></div>
+          <h2>Como foi sua noite?</h2>
+          <p>Um registro curto pela manhã ajuda a enxergar tendências sem ficar preso a uma noite isolada.</p>
+          <button class="button primary" type="button" data-nav="registrar">Registrar meu sono</button>
+        </article>
+        <article class="card">
+          <span class="eyebrow">SEU FOCO DE HOJE</span>
+          <h3 id="dailyFocusTitle">Regularidade antes de perfeição</h3>
+          <p id="dailyFocusText">Um horário de levantar relativamente previsível costuma ser mais útil do que tentar controlar exatamente a hora em que o sono chega.</p>
+        </article>
+        <article class="card">
+          <span class="eyebrow">CONTINUE SUA JORNADA</span>
+          <h3 id="nextModuleTitle">1. Entenda seu sono</h3>
+          <p id="nextModuleMeta">Leitura + áudio • cerca de 4 min</p>
+          <button class="text-button" type="button" data-nav="jornada">Continuar →</button>
+        </article>
+      </div>
+
+      <section class="shell principles" aria-label="O que você vai desenvolver">
+        <article><span>01</span><h3>Compreender</h3><p>Entenda pressão de sono, ritmo circadiano e por que o sono não responde bem à força de vontade.</p></article>
+        <article><span>02</span><h3>Observar</h3><p>Registre o essencial e procure padrões de vários dias, em vez de perseguir precisão impossível.</p></article>
+        <article><span>03</span><h3>Experimentar</h3><p>Teste mudanças pequenas, contextualizadas e sustentáveis, sem listas rígidas de “regras perfeitas”.</p></article>
+      </section>
+    </section>
+
+    <section class="view" id="avaliacao" data-view="avaliacao" aria-labelledby="assessmentTitle">
+      <div class="shell narrow">
+        <button class="back-link" type="button" data-nav="inicio">← Voltar</button>
+        <span class="eyebrow">MAPA INICIAL</span>
+        <h1 id="assessmentTitle">Vamos conhecer seu sono.</h1>
+        <p class="section-lead">Não é um diagnóstico. São perguntas rápidas para organizar o que merece atenção primeiro.</p>
+        <div class="progress-track" aria-hidden="true"><span id="assessmentProgress"></span></div>
+        <div id="assessmentStep" class="assessment-step" aria-live="polite"></div>
+        <div class="assessment-actions">
+          <button class="button ghost" id="assessmentBack" type="button">Voltar</button>
+          <button class="button primary" id="assessmentNext" type="button">Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="mapa" data-view="mapa" aria-labelledby="mapTitle">
+      <div class="shell narrow">
+        <button class="back-link" type="button" data-nav="inicio">← Início</button>
+        <span class="eyebrow">SEU MAPA DO SONO</span>
+        <h1 id="mapTitle">Padrões antes de rótulos.</h1>
+        <p class="section-lead">Este mapa organiza sinais do seu momento atual. Ele não substitui avaliação profissional.</p>
+        <div class="sleep-map" id="sleepMap"></div>
+        <article class="card focus-card">
+          <span class="eyebrow">FOCO INICIAL</span>
+          <ol id="focusList"></ol>
+        </article>
+        <article class="alert-card" id="professionalAlert" hidden>
+          <strong>Talvez valha conversar com um profissional.</strong>
+          <p>Alguns aspectos informados podem se beneficiar de avaliação médica ou psicológica individual.</p>
+        </article>
+        <div class="stack-actions">
+          <button class="button primary" type="button" data-nav="jornada">Começar a jornada</button>
+          <button class="button ghost" type="button" data-nav="registrar">Fazer meu primeiro registro</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="jornada" data-view="jornada" aria-labelledby="journeyTitle">
+      <div class="shell">
+        <span class="eyebrow">JORNADA GUIADA</span>
+        <h1 id="journeyTitle">Aprenda em pequenas doses.</h1>
+        <p class="section-lead">Entenda → ouça → experimente → observe → leve para hoje.</p>
+        <div class="module-grid" id="moduleGrid"></div>
+      </div>
+    </section>
+
+    <section class="view" id="modulo" data-view="modulo" aria-labelledby="moduleTitle">
+      <div class="shell narrow" id="moduleContent"></div>
+    </section>
+
+    <section class="view" id="registrar" data-view="registrar" aria-labelledby="diaryTitle">
+      <div class="shell narrow">
+        <span class="eyebrow">DIÁRIO DO SONO</span>
+        <h1 id="diaryTitle">Registre o essencial.</h1>
+        <p class="section-lead">Estimativas consistentes são mais úteis do que tentar lembrar cada minuto com precisão.</p>
+        <form id="sleepDiaryForm" class="diary-form">
+          <div class="field-row">
+            <label>Que horas você deitou?<input name="bedTime" type="time" required></label>
+            <label>Quando tentou dormir?<input name="trySleepTime" type="time" required></label>
+          </div>
+          <div class="field-row">
+            <label>Quanto tempo levou para dormir?<span class="input-with-unit"><input name="sleepLatency" type="number" min="0" max="480" inputmode="numeric" required><span>min</span></span></label>
+            <label>Quantas vezes acordou?<input name="awakenings" type="number" min="0" max="30" inputmode="numeric" required></label>
+          </div>
+          <label>Tempo total acordado durante a noite<span class="input-with-unit"><input name="waso" type="number" min="0" max="600" inputmode="numeric" required><span>min</span></span></label>
+          <div class="field-row">
+            <label>Que horas acordou?<input name="wakeTime" type="time" required></label>
+            <label>Que horas levantou?<input name="riseTime" type="time" required></label>
+          </div>
+          <fieldset>
+            <legend>Como você percebe a qualidade desta noite?</legend>
+            <div class="segmented five" data-scale="quality"></div>
+            <input type="hidden" name="quality" required>
+          </fieldset>
+          <fieldset>
+            <legend>Como está sua energia agora?</legend>
+            <div class="segmented five" data-scale="energy"></div>
+            <input type="hidden" name="energy" required>
+          </fieldset>
+          <details>
+            <summary>Adicionar contexto opcional</summary>
+            <div class="optional-grid">
+              <label>Cafeína após 16h?<select name="lateCaffeine"><option value="">Não informar</option><option value="no">Não</option><option value="yes">Sim</option></select></label>
+              <label>Cochilou ontem?<select name="nap"><option value="">Não informar</option><option value="no">Não</option><option value="yes">Sim</option></select></label>
+              <label>Algo relevante?<textarea name="note" rows="3" maxlength="300" placeholder="Opcional. Ex.: viagem, plantão, preocupação fora do habitual..."></textarea></label>
+            </div>
+          </details>
+          <button class="button primary full" type="submit">Salvar registro</button>
+        </form>
+        <div class="save-confirmation" id="diarySaved" hidden role="status">Registro salvo neste dispositivo.</div>
+      </div>
+    </section>
+
+    <section class="view" id="ferramentas" data-view="ferramentas" aria-labelledby="toolsTitle">
+      <div class="shell">
+        <span class="eyebrow">FERRAMENTAS</span>
+        <h1 id="toolsTitle">O que você precisa agora?</h1>
+        <p class="section-lead">Escolha pelo que está acontecendo neste momento, não pela técnica.</p>
+        <div class="tool-grid" id="toolGrid"></div>
+
+        <div class="section-divider"></div>
+        <div class="section-heading">
+          <div><span class="eyebrow">CENTRAL DE ÁUDIOS</span><h2>Ouvir sem precisar “fazer direito”.</h2></div>
+          <p>Os áudios foram roteirizados para soar como uma conversa curta, não como locução institucional.</p>
+        </div>
+        <div class="audio-library" id="audioLibrary"></div>
+      </div>
+    </section>
+
+    <section class="view" id="audio" data-view="audio" aria-labelledby="audioTitle">
+      <div class="shell narrow" id="audioExperience"></div>
+    </section>
+
+    <section class="view" id="meu-sono" data-view="meu-sono" aria-labelledby="progressTitle">
+      <div class="shell">
+        <span class="eyebrow">MEU SONO</span>
+        <h1 id="progressTitle">Tendências, não notas.</h1>
+        <p class="section-lead">Veja padrões de alguns dias sem transformar o sono em uma prova diária.</p>
+        <div class="period-tabs" role="tablist" aria-label="Período do relatório">
+          <button class="active" type="button" data-days="7">7 dias</button>
+          <button type="button" data-days="14">14 dias</button>
+          <button type="button" data-days="30">30 dias</button>
+        </div>
+        <div class="metrics-grid" id="metricsGrid"></div>
+        <article class="card insight-card">
+          <span class="eyebrow">LEITURA DO PERÍODO</span>
+          <p id="periodInsight">Faça alguns registros para que possamos mostrar tendências úteis.</p>
+        </article>
+        <div class="chart-card">
+          <div class="chart-heading"><h2>Regularidade do horário de levantar</h2><span>últimos registros</span></div>
+          <div id="riseChart" class="simple-chart" aria-label="Gráfico de horários de levantar"></div>
+        </div>
+        <div class="plan-grid">
+          <article class="card">
+            <span class="eyebrow">MEU PLANO DE SONO</span>
+            <h3>Transforme aprendizados em um plano pessoal.</h3>
+            <button class="text-button" type="button" id="openPlanBtn">Abrir meu plano →</button>
+          </article>
+          <article class="card danger-zone">
+            <span class="eyebrow">PRIVACIDADE</span>
+            <h3>Seus dados estão neste dispositivo.</h3>
+            <button class="text-button danger" type="button" id="clearDataBtn">Apagar meus dados →</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="plano" data-view="plano" aria-labelledby="planTitle">
+      <div class="shell narrow">
+        <button class="back-link" type="button" data-nav="meu-sono">← Meu sono</button>
+        <span class="eyebrow">MEU PLANO DE SONO</span>
+        <h1 id="planTitle">Um plano flexível, feito por você.</h1>
+        <p class="section-lead">Não é uma receita perfeita. É um conjunto curto de decisões para diminuir improviso nas noites difíceis.</p>
+        <form id="sleepPlanForm" class="plan-form">
+          <label>Meu horário de referência para levantar<input type="time" name="anchorRise"></label>
+          <label>Minha rotina de desaceleração<textarea name="windDown" rows="3" placeholder="Ex.: encerrar trabalho, luz mais baixa, banho, leitura breve..."></textarea></label>
+          <label>Como quero lidar com cafeína<textarea name="caffeinePlan" rows="2"></textarea></label>
+          <label>Se eu estiver acordado e frustrado, vou lembrar que…<textarea name="awakePlan" rows="3"></textarea></label>
+          <label>Depois de uma noite ruim, quero evitar…<textarea name="badNightPlan" rows="3"></textarea></label>
+          <label>O que já percebi que funciona para mim<textarea name="works" rows="3"></textarea></label>
+          <button class="button primary full" type="submit">Salvar meu plano</button>
+        </form>
+        <button class="button ghost full" id="printPlanBtn" type="button">Imprimir / salvar como PDF</button>
+      </div>
+    </section>
+
+    <section class="view" id="sobre" data-view="sobre" aria-labelledby="aboutTitle">
+      <div class="shell narrow prose">
+        <span class="eyebrow">SOBRE</span>
+        <h1 id="aboutTitle">Sono em Dia</h1>
+        <p>Esta plataforma oferece educação e ferramentas psicológicas para compreensão do sono, com referências em ciência do sono e princípios contemporâneos da Terapia Cognitivo-Comportamental para Insônia (TCC-I).</p>
+        <p>O conteúdo foi desenhado para apoiar autocuidado e conversas clínicas. Ele não substitui avaliação médica ou psicológica individual e não realiza diagnóstico automático.</p>
+        <h2>Quando procurar avaliação</h2>
+        <p>Ronco intenso, pausas respiratórias percebidas, engasgos durante o sono, sonolência incapacitante, adormecer ao dirigir, comportamentos incomuns durante o sono ou mudanças extremas na necessidade de dormir merecem avaliação profissional.</p>
+        <p>Em situação de risco imediato ou emergência, procure o serviço de emergência da sua região.</p>
+      </div>
+    </section>
+
+    <section class="view" id="referencias" data-view="referencias" aria-labelledby="referencesTitle">
+      <div class="shell narrow prose">
+        <span class="eyebrow">BASE CIENTÍFICA</span>
+        <h1 id="referencesTitle">Referências essenciais</h1>
+        <p>O conteúdo prioriza TCC-I multicomponente e evita tratar “higiene do sono” isoladamente como solução universal.</p>
+        <ul class="reference-list">
+          <li>American Academy of Sleep Medicine. Behavioral and psychological treatments for chronic insomnia disorder in adults: clinical practice guideline. 2021.</li>
+          <li>Riemann D, et al. The European Insomnia Guideline: an update on the diagnosis and treatment of insomnia 2023.</li>
+          <li>U.S. Department of Veterans Affairs / Department of Defense. Clinical Practice Guideline for the Management of Chronic Insomnia Disorder and Obstructive Sleep Apnea. 2025.</li>
+          <li>Qaseem A, et al. Management of Chronic Insomnia Disorder in Adults: A Clinical Practice Guideline From the American College of Physicians. 2016.</li>
+          <li>Harvey AG. A cognitive model of insomnia. Behaviour Research and Therapy. 2002.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="view" id="privacidade" data-view="privacidade" aria-labelledby="privacyTitle">
+      <div class="shell narrow prose">
+        <span class="eyebrow">PRIVACIDADE</span>
+        <h1 id="privacyTitle">Dados mínimos. Controle seu.</h1>
+        <p>A versão atual armazena registros do diário, progresso e plano pessoal localmente no navegador deste dispositivo. Esses dados não são enviados automaticamente para o psicólogo nem para um servidor da plataforma.</p>
+        <p>Se você limpar os dados do navegador ou usar a opção “Apagar meus dados”, os registros locais serão removidos.</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navegação principal">
+    <button type="button" class="active" data-nav="inicio"><span>⌂</span><small>Início</small></button>
+    <button type="button" data-nav="jornada"><span>◫</span><small>Jornada</small></button>
+    <button type="button" class="nav-record" data-nav="registrar"><span>＋</span><small>Registrar</small></button>
+    <button type="button" data-nav="ferramentas"><span>◌</span><small>Ferramentas</small></button>
+    <button type="button" data-nav="meu-sono"><span>⌁</span><small>Meu sono</small></button>
+  </nav>
+
+  <footer class="footer">
+    <div class="shell footer-grid">
+      <div>
+        <strong class="footer-brand">Sono em Dia</strong>
+        <p>Entenda seu sono. Cuide melhor das suas noites.</p>
+      </div>
+      <div class="professional-signature">
+        <strong>Richelmy Murta</strong>
+        <span>Psicólogo Clínico</span>
+        <span>Especialista em Terapia Cognitivo-Comportamental</span>
+      </div>
+      <div class="footer-links">
+        <button type="button" data-nav="sobre">Sobre</button>
+        <button type="button" data-nav="privacidade">Privacidade</button>
+        <button type="button" data-nav="referencias">Referências</button>
+        <button type="button" id="footerShareBtn">Compartilhar</button>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <span>© 2026 Sono em Dia. Conteúdo educativo e de apoio psicológico.</span>
+      <span>Não substitui avaliação médica ou psicológica individual.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/content.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
