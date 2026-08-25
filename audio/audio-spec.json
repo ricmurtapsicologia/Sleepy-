@@ -1,0 +1,70 @@
+{
+  "voice": "pt-BR-AntonioNeural",
+  "profile": "Ampulheta N2: voz masculina pt-BR, pausas editoriais, compressão e normalização",
+  "opening_silence_ms": 130,
+  "ending_silence_ms": 240,
+  "target_dbfs": -18.0,
+  "format": "MP3 128 kbps, mono, 44.1 kHz",
+  "tracks": [
+    {
+      "id": "welcome",
+      "duration_seconds": 55.6
+    },
+    {
+      "id": "module1",
+      "duration_seconds": 64.6
+    },
+    {
+      "id": "module2",
+      "duration_seconds": 59.9
+    },
+    {
+      "id": "module3",
+      "duration_seconds": 62.8
+    },
+    {
+      "id": "module4",
+      "duration_seconds": 59.9
+    },
+    {
+      "id": "module5",
+      "duration_seconds": 59.7
+    },
+    {
+      "id": "module6",
+      "duration_seconds": 61.9
+    },
+    {
+      "id": "module7",
+      "duration_seconds": 58.6
+    },
+    {
+      "id": "module8",
+      "duration_seconds": 55.5
+    },
+    {
+      "id": "mind",
+      "duration_seconds": 67.8
+    },
+    {
+      "id": "anxiety",
+      "duration_seconds": 64.4
+    },
+    {
+      "id": "awake",
+      "duration_seconds": 57.4
+    },
+    {
+      "id": "middle",
+      "duration_seconds": 57.1
+    },
+    {
+      "id": "frustrated",
+      "duration_seconds": 53.6
+    },
+    {
+      "id": "slow",
+      "duration_seconds": 79.2
+    }
+  ]
+}
