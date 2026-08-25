@@ -1,0 +1,24 @@
+/* Refinamentos de UX — carregado após styles.css */
+.assessment-step>p{color:var(--muted);font-size:15px;max-width:640px;margin-bottom:0}
+.choice{align-items:flex-start;line-height:1.35}
+.choice input{margin-top:.18em;flex:0 0 auto}
+.choice span{font-weight:600}
+
+.footer{text-align:center}
+.footer-grid{grid-template-columns:1fr;justify-items:center;max-width:820px;gap:22px}
+.footer-grid>div{width:100%}
+.footer-brand{display:block}
+.footer p{margin:6px auto 0;max-width:520px}
+.professional-signature{justify-items:center;text-align:center;gap:2px}
+.footer-links{justify-content:center;align-content:center}
+.footer-bottom{max-width:820px;justify-content:center;align-items:center;text-align:center;flex-direction:column;gap:6px}
+
+.audio-quality-note{margin-top:14px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--surface) 82%,transparent);font-size:13px;color:var(--muted)}
+.audio-quality-note strong{color:var(--ink)}
+.audio-unavailable{padding:14px 16px;border-radius:14px;background:color-mix(in srgb,var(--danger) 7%,var(--surface));border:1px solid color-mix(in srgb,var(--danger) 26%,var(--line));color:var(--muted);font-size:14px}
+
+@media (max-width:620px){
+  .footer-grid,.footer-bottom{max-width:none}
+  .footer-links{justify-content:center}
+  .assessment-step>p{font-size:14px}
+}
