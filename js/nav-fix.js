@@ -15,11 +15,39 @@ function hasProgress(state){
   );
 }
 
+function injectCriticalStyle(){
+  if(document.getElementById('cognitiveCritical'))return;
+  const style=document.createElement('style');
+  style.id='cognitiveCritical';
+  style.textContent=`
+    body[data-experience="new"] #inicio .hero-panel,
+    body[data-experience="new"] #inicio .principles,
+    body[data-experience="new"] #howToUse,
+    body[data-experience="new"] .bottom-nav,
+    body[data-experience="new"] #shareBtn,
+    body[data-experience="new"] .footer{display:none!important}
+    body[data-experience="returning"] #inicio .hero,
+    body[data-experience="returning"] #inicio .principles,
+    body[data-experience="returning"] #howToUse{display:none!important}
+  `;
+  document.head.appendChild(style);
+}
+
+function primeExperience(){
+  if(!document.body)return;
+  const returning=hasProgress(readState());
+  document.body.dataset.experience=returning?'returning':'new';
+  document.body.dataset.activeView=document.querySelector('.view.active')?.dataset.view||'inicio';
+}
+
+injectCriticalStyle();
+primeExperience();
+
 function ensureCognitiveCss(){
   if(document.querySelector('link[href*="cognitive.css"]'))return;
   const link=document.createElement('link');
   link.rel='stylesheet';
-  link.href='css/cognitive.css?v=20260825-1';
+  link.href='css/cognitive.css?v=20260825-2';
   document.head.appendChild(link);
 }
 
@@ -42,7 +70,7 @@ function simplifyFirstVisit(){
   const cont=document.getElementById('continueJourneyBtn');
   const privacy=document.querySelector('#inicio .hero-copy > .privacy-note');
   if(eyebrow)eyebrow.textContent='COMECE POR AQUI';
-  if(title)title.innerHTML='Como está o seu sono?';
+  if(title)title.textContent='Como está o seu sono?';
   if(lead)lead.textContent='Em poucos passos, organize seu padrão e descubra por onde começar.';
   if(start)start.textContent='Entender meu sono';
   if(cont){cont.dataset.empty='true';cont.hidden=true}
