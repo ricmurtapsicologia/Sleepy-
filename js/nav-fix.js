@@ -33,21 +33,11 @@ function injectCriticalStyle(){
   document.head.appendChild(style);
 }
 
-function primeExperience(){
-  if(!document.body)return;
-  const returning=hasProgress(readState());
-  document.body.dataset.experience=returning?'returning':'new';
-  document.body.dataset.activeView=document.querySelector('.view.active')?.dataset.view||'inicio';
-}
-
-injectCriticalStyle();
-primeExperience();
-
 function ensureCognitiveCss(){
   if(document.querySelector('link[href*="cognitive.css"]'))return;
   const link=document.createElement('link');
   link.rel='stylesheet';
-  link.href='css/cognitive.css?v=20260825-2';
+  link.href='css/cognitive.css?v=20260825-3';
   document.head.appendChild(link);
 }
 
@@ -62,6 +52,27 @@ function ensureEntryAudio(){
   copy.appendChild(box);
 }
 
+function ensureLandingBranding(){
+  if(document.getElementById('landingBranding'))return;
+  const hero=document.querySelector('#inicio .hero');
+  if(!hero)return;
+  const footer=document.createElement('footer');
+  footer.id='landingBranding';
+  footer.className='landing-branding shell';
+  footer.setAttribute('aria-label','Branding profissional');
+  footer.innerHTML=`
+    <div class="landing-brand-lockup">
+      <span class="landing-brand-mark" aria-hidden="true">◌</span>
+      <div><strong>Sono em Dia</strong><small>ciência • rotina • cuidado</small></div>
+    </div>
+    <div class="landing-professional">
+      <strong>Richelmy Murta</strong>
+      <span>Psicólogo Clínico • Especialista em Terapia Cognitivo-Comportamental</span>
+    </div>
+  `;
+  hero.insertAdjacentElement('afterend',footer);
+}
+
 function simplifyFirstVisit(){
   const eyebrow=document.querySelector('#inicio .hero-copy > .eyebrow');
   const title=document.getElementById('homeTitle');
@@ -69,13 +80,14 @@ function simplifyFirstVisit(){
   const start=document.getElementById('startJourneyBtn');
   const cont=document.getElementById('continueJourneyBtn');
   const privacy=document.querySelector('#inicio .hero-copy > .privacy-note');
-  if(eyebrow)eyebrow.textContent='COMECE POR AQUI';
-  if(title)title.textContent='Como está o seu sono?';
-  if(lead)lead.textContent='Em poucos passos, organize seu padrão e descubra por onde começar.';
-  if(start)start.textContent='Entender meu sono';
+  if(eyebrow&&eyebrow.textContent!=='COMECE POR AQUI')eyebrow.textContent='COMECE POR AQUI';
+  if(title&&title.textContent!=='Como está o seu sono?')title.textContent='Como está o seu sono?';
+  if(lead&&lead.textContent!=='Em poucos passos, organize seu padrão e descubra por onde começar.')lead.textContent='Em poucos passos, organize seu padrão e descubra por onde começar.';
+  if(start&&start.textContent!=='Entender meu sono')start.textContent='Entender meu sono';
   if(cont){cont.dataset.empty='true';cont.hidden=true}
-  if(privacy)privacy.textContent='Leva poucos minutos • seus dados ficam neste aparelho.';
+  if(privacy&&privacy.textContent!=='Leva poucos minutos • seus dados ficam neste aparelho.')privacy.textContent='Leva poucos minutos • seus dados ficam neste aparelho.';
   ensureEntryAudio();
+  ensureLandingBranding();
 }
 
 function todayISO(){
@@ -97,21 +109,17 @@ function simplifyReturningHome(state){
   if(focus)focus.dataset.supportingFocus='true';
 }
 
-function removeInjectedOverload(){
-  const how=document.getElementById('howToUse');
-  if(how)how.hidden=true;
-}
-
-function activeView(){
-  return document.querySelector('.view.active')?.dataset.view||'inicio';
-}
+function activeView(){return document.querySelector('.view.active')?.dataset.view||'inicio'}
 
 function applyExperience(){
   const state=readState();
   const returning=hasProgress(state);
   document.body.dataset.experience=returning?'returning':'new';
   document.body.dataset.activeView=activeView();
-  removeInjectedOverload();
+  const how=document.getElementById('howToUse');
+  if(how)how.hidden=true;
+  const landing=document.getElementById('landingBranding');
+  if(landing)landing.hidden=returning;
   if(returning)simplifyReturningHome(state);else simplifyFirstVisit();
 }
 
@@ -128,18 +136,18 @@ function goHome(e){
   window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
 }
 
+injectCriticalStyle();
+
 document.addEventListener('click',goHome,true);
-document.addEventListener('click',()=>setTimeout(applyExperience,40));
-document.addEventListener('submit',()=>setTimeout(applyExperience,60));
-window.addEventListener('hashchange',applyExperience);
+document.addEventListener('click',()=>setTimeout(applyExperience,0));
+document.addEventListener('submit',()=>setTimeout(applyExperience,0));
+window.addEventListener('hashchange',()=>setTimeout(applyExperience,0));
 window.addEventListener('storage',applyExperience);
+window.addEventListener('pageshow',applyExperience);
 
 function boot(){
   ensureCognitiveCss();
   applyExperience();
-  const observer=new MutationObserver(()=>applyExperience());
-  document.querySelectorAll('.view').forEach(v=>observer.observe(v,{attributes:true,attributeFilter:['class']}));
-  observer.observe(document.body,{childList:true,subtree:true});
 }
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});
