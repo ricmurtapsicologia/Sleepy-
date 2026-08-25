@@ -1,0 +1,49 @@
+name: Generate natural audio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/content.js'
+      - 'scripts/export-audio.js'
+      - 'scripts/generate-audio.py'
+      - '.github/workflows/generate-audio.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sono-audio-generation
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install neural TTS renderer
+        run: python -m pip install --upgrade edge-tts
+      - name: Export scripts
+        run: node scripts/export-audio.js /tmp/sono-audios.json
+      - name: Generate pt-BR male neural tracks
+        env:
+          SONO_VOICE: pt-BR-AntonioNeural
+        run: python scripts/generate-audio.py /tmp/sono-audios.json audio
+      - name: Commit generated tracks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/*.mp3 audio/audio-spec.json
+          if git diff --cached --quiet; then
+            echo "No audio changes"
+            exit 0
+          fi
+          git commit -m "build: gerar áudios masculinos naturais"
+          git push
