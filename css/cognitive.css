@@ -3,10 +3,10 @@
 body[data-experience="new"] #inicio .hero {
   grid-template-columns: minmax(0, 640px) !important;
   justify-content: center;
-  min-height: calc(100dvh - 96px);
+  min-height: calc(100dvh - 170px);
   align-items: center;
   padding-top: clamp(2rem, 7vh, 5rem);
-  padding-bottom: clamp(5rem, 12vh, 8rem);
+  padding-bottom: clamp(3rem, 8vh, 5rem);
 }
 
 body[data-experience="new"] #inicio .hero-copy {
@@ -79,6 +79,55 @@ body[data-experience="new"] .footer {
   flex: 0 0 auto;
 }
 
+.landing-branding {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 86px;
+  padding-top: 1rem;
+  padding-bottom: 1.2rem;
+  border-top: 1px solid var(--line, rgba(127,127,127,.18));
+}
+
+.landing-brand-lockup,
+.landing-professional {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+}
+
+.landing-brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line, rgba(127,127,127,.22));
+  border-radius: 999px;
+  font-size: 1.05rem;
+}
+
+.landing-brand-lockup > div,
+.landing-professional {
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-brand-lockup strong,
+.landing-professional strong {
+  font-size: .92rem;
+  letter-spacing: -.01em;
+}
+
+.landing-brand-lockup small,
+.landing-professional span {
+  margin-top: .12rem;
+  font-size: .76rem;
+  line-height: 1.35;
+  opacity: .68;
+}
+
+body[data-experience="returning"] #landingBranding,
 body[data-experience="returning"] #inicio .hero,
 body[data-experience="returning"] #inicio .principles,
 body[data-experience="returning"] #howToUse {
@@ -119,7 +168,10 @@ body[data-active-view="audio"] .bottom-nav {
 
 body[data-active-view="avaliacao"] .footer,
 body[data-active-view="mapa"] .footer,
-body[data-active-view="audio"] .footer {
+body[data-active-view="audio"] .footer,
+body[data-active-view="avaliacao"] #landingBranding,
+body[data-active-view="mapa"] #landingBranding,
+body[data-active-view="audio"] #landingBranding {
   display: none !important;
 }
 
@@ -135,9 +187,9 @@ body[data-active-view="audio"] #main {
   }
 
   body[data-experience="new"] #inicio .hero {
-    min-height: calc(100dvh - 64px);
-    padding-top: 1.4rem;
-    padding-bottom: 2.5rem;
+    min-height: calc(100dvh - 150px);
+    padding-top: 1.35rem;
+    padding-bottom: 2rem;
   }
 
   body[data-experience="new"] #homeTitle {
@@ -157,6 +209,19 @@ body[data-active-view="audio"] #main {
 
   .entry-audio {
     margin-top: .85rem;
+  }
+
+  .landing-branding {
+    min-height: 82px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .55rem;
+    padding-top: .85rem;
+    padding-bottom: 1rem;
+  }
+
+  .landing-professional {
+    padding-left: 42px;
   }
 
   body[data-experience="returning"] #homeDashboard {
