@@ -3,157 +3,152 @@
 const C=window.SONO_CONTENT;
 if(!C)return;
 
+const PROGRESS_KEY='sonoEmDia.audioProgress.v1';
 let player=null;
-let synthActive=false;
-let synthQueue=[];
-
-const maleNames=/antonio|antônio|felipe|daniel|bruno|rafael|thiago|tiago|carlos|paulo|jo[aã]o|ricardo|marcelo|gustavo|lucas|mateus|matheus|eduardo|rodrigo|andre|andré|fabio|fábio|leonardo|henrique/i;
-const naturalNames=/natural|neural|enhanced|premium|siri/i;
-const trustedVendor=/microsoft|apple|samsung/i;
-const roboticNames=/espeak|pico|compact|robot|standard/i;
+let activeId=null;
+let persistTick=0;
 
 function esc(v=''){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function loadProgress(){try{return JSON.parse(localStorage.getItem(PROGRESS_KEY)||'{}')||{}}catch{return{}}}
+function saveProgress(map){try{localStorage.setItem(PROGRESS_KEY,JSON.stringify(map))}catch{}}
 function currentView(){return document.querySelector('.view.active')?.dataset.view||'ferramentas'}
 function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.dataset.view===id));
   document.querySelectorAll('.bottom-nav [data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===id));
+  document.body.dataset.activeView=id;
   history.replaceState(null,'',`#${id}`);
   window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
 }
+function fmt(sec){
+  if(!Number.isFinite(sec)||sec<0)return'0:00';
+  const m=Math.floor(sec/60),s=Math.floor(sec%60);
+  return `${m}:${String(s).padStart(2,'0')}`;
+}
+function setPlaySymbol(symbol){const b=document.getElementById('premiumPlayBtn');if(b)b.textContent=symbol}
+function persist(){
+  if(!player||!activeId||!Number.isFinite(player.currentTime))return;
+  const map=loadProgress();
+  map[activeId]=Math.max(0,Math.floor(player.currentTime));
+  saveProgress(map);
+}
+function clearProgress(id){
+  const map=loadProgress();
+  delete map[id];
+  saveProgress(map);
+}
 function stopAll(){
-  if(player){player.pause();player.src='';player=null}
-  if('speechSynthesis'in window)speechSynthesis.cancel();
-  synthActive=false;synthQueue=[];
-}
-function voiceScore(v){
-  const name=(v.name||'').toLowerCase();
-  const lang=(v.lang||'').toLowerCase();
-  let score=0;
-  if(lang==='pt-br'||lang==='pt_br')score+=100;
-  else if(lang.startsWith('pt'))score+=45;
-  else return -1000;
-  if(maleNames.test(name))score+=90;
-  if(naturalNames.test(name))score+=70;
-  if(trustedVendor.test(name))score+=35;
-  if(v.localService)score+=5;
-  if(/google/i.test(name))score-=30;
-  if(roboticNames.test(name))score-=80;
-  return score;
-}
-function availableVoice(){
-  if(!('speechSynthesis'in window))return null;
-  return speechSynthesis.getVoices().filter(v=>/^pt/i.test(v.lang||'')).sort((a,b)=>voiceScore(b)-voiceScore(a))[0]||null;
-}
-function voiceIsPreferred(v){
-  if(!v)return false;
-  const name=v.name||'';
-  return maleNames.test(name)&&(naturalNames.test(name)||trustedVendor.test(name))&&!/google/i.test(name);
-}
-function waitVoice(){
-  return new Promise(resolve=>{
-    const found=availableVoice();
-    if(found){resolve(found);return}
-    if(!('speechSynthesis'in window)){resolve(null);return}
-    let done=false;
-    const finish=()=>{if(done)return;done=true;resolve(availableVoice())};
-    speechSynthesis.addEventListener?.('voiceschanged',finish,{once:true});
-    setTimeout(finish,700);
-  });
-}
-function chunks(text,max=320){
-  const sentences=text.match(/[^.!?]+[.!?]+|[^.!?]+$/g)?.map(s=>s.trim()).filter(Boolean)||[text];
-  const out=[];let current='';
-  for(const sentence of sentences){
-    if(current&&(`${current} ${sentence}`).length>max){out.push(current);current=sentence}
-    else current=current?`${current} ${sentence}`:sentence;
+  if(player){
+    persist();
+    player.pause();
+    player.removeAttribute('src');
+    try{player.load()}catch{}
   }
-  if(current)out.push(current);
-  return out;
+  player=null;
+  activeId=null;
+  persistTick=0;
 }
-function updatePlay(symbol){const b=document.getElementById('premiumPlayBtn');if(b)b.textContent=symbol}
-function speakNext(a,voice){
-  if(!synthQueue.length){synthActive=false;updatePlay('▶');return}
-  const u=new SpeechSynthesisUtterance(synthQueue.shift());
-  u.lang='pt-BR';
-  if(voice)u.voice=voice;
-  u.rate=a.kind==='calm'?0.88:0.98;
-  u.pitch=a.kind==='calm'?0.93:0.96;
-  u.volume=0.94;
-  u.onend=()=>{if(synthActive)setTimeout(()=>speakNext(a,voice),a.kind==='calm'?260:100)};
-  u.onerror=()=>{synthActive=false;updatePlay('▶')};
-  speechSynthesis.speak(u);
-}
-function startSpeech(a,voice){
-  if(!('speechSynthesis'in window))return;
-  speechSynthesis.cancel();
-  synthQueue=chunks(a.script);
-  synthActive=true;
-  updatePlay('❚❚');
-  speakNext(a,voice);
-}
-function fmt(sec){const m=Math.floor(sec/60),s=Math.floor(sec%60);return `${m}:${String(s).padStart(2,'0')}`}
-function baseMarkup(a,back,note){
+function markup(a,back){
   return `<button class="back-link" type="button" data-nav="${esc(back)}">← Voltar</button>
   <div class="audio-stage">
-    <div><span class="eyebrow">${esc(a.category)}</span><h1 id="audioTitle">${esc(a.title)}</h1><p>${a.kind==='calm'?'Use este áudio para diminuir um pouco a ativação, sem exigir que o sono aconteça.':'Uma explicação curta, em ritmo de conversa.'}</p></div>
-    <div class="audio-controls"><button id="premiumPlayBtn" type="button" aria-label="Reproduzir ou pausar">▶</button><div><div class="audio-progress"><span id="audioProgressBar"></span></div></div><span class="audio-time" id="audioTime">${esc(a.duration)}</span></div>
-  </div>${note}<details class="transcript"><summary>Ver transcrição</summary><p>${esc(a.script)}</p></details>`;
+    <div>
+      <span class="eyebrow">${esc(a.category)}</span>
+      <h1 id="audioTitle">${esc(a.title)}</h1>
+      <p>${a.kind==='calm'?'Use como apoio para reduzir a ativação, sem exigir que o sono aconteça.':'Uma explicação curta, em ritmo de conversa.'}</p>
+    </div>
+    <div class="audio-controls">
+      <button id="premiumPlayBtn" type="button" aria-label="Reproduzir ou pausar" disabled>▶</button>
+      <div class="audio-progress" id="audioSeek" role="slider" aria-label="Progresso do áudio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><span id="audioProgressBar"></span></div>
+      <span class="audio-time" id="audioTime">Preparando…</span>
+    </div>
+  </div>
+  <div class="audio-quality-note" id="audioStatus"><strong>Áudio produzido para o Sono em Dia.</strong> Reprodução por arquivo, sem usar a voz do aparelho.</div>
+  <details class="transcript"><summary>Ver transcrição</summary><p>${esc(a.script)}</p></details>`;
 }
-async function fileExists(src){
-  try{const r=await fetch(src,{method:'HEAD',cache:'no-store'});return r.ok}catch{return false}
-}
-function playFile(a,src,back){
-  const host=document.getElementById('audioExperience');
-  host.innerHTML=baseMarkup(a,back,'<div class="audio-quality-note"><strong>Voz natural.</strong> Reprodução por arquivo de áudio produzido para a plataforma.</div>');
-  player=new Audio(src);player.preload='metadata';
-  document.getElementById('premiumPlayBtn')?.addEventListener('click',()=>{
-    if(player.paused){player.play().then(()=>updatePlay('❚❚')).catch(()=>updatePlay('▶'))}
-    else{player.pause();updatePlay('▶')}
-  });
-  player.addEventListener('timeupdate',()=>{
-    const p=document.getElementById('audioProgressBar');
-    if(p&&player.duration)p.style.width=`${Math.min(100,(player.currentTime/player.duration)*100)}%`;
-    const t=document.getElementById('audioTime');
-    if(t&&Number.isFinite(player.duration))t.textContent=`${fmt(player.currentTime)} / ${fmt(player.duration)}`;
-  });
-  player.addEventListener('ended',()=>updatePlay('▶'));
-}
-async function playSpeech(a,back){
-  const voice=await waitVoice();
-  const host=document.getElementById('audioExperience');
-  const quality=voiceIsPreferred(voice);
-  const note=voice
-    ? `<div class="audio-quality-note"><strong>${quality?'Voz masculina preferencial':'Voz de compatibilidade do dispositivo'}.</strong> ${esc(voice.name)}. Arquivos masculinos naturais em /audio substituem automaticamente esta voz quando disponíveis.</div>`
-    : '<div class="audio-unavailable"><strong>Este aparelho não disponibilizou uma voz em português.</strong> Use a transcrição enquanto o arquivo de áudio natural não estiver disponível.</div>';
-  host.innerHTML=baseMarkup(a,back,note);
+function unavailable(a){
+  const status=document.getElementById('audioStatus');
+  const time=document.getElementById('audioTime');
   const btn=document.getElementById('premiumPlayBtn');
-  if(!voice){btn?.setAttribute('disabled','disabled');return}
-  btn?.addEventListener('click',()=>{
-    if(speechSynthesis.speaking&&!speechSynthesis.paused){speechSynthesis.pause();updatePlay('▶');return}
-    if(speechSynthesis.paused){speechSynthesis.resume();updatePlay('❚❚');return}
-    startSpeech(a,voice);
-  });
+  if(status)status.innerHTML='<strong>Áudio temporariamente indisponível.</strong> A transcrição permanece disponível abaixo.';
+  if(time)time.textContent=a.duration||'—';
+  if(btn){btn.disabled=true;btn.textContent='▶'}
 }
-async function openAudio(id){
+function seekTo(event){
+  if(!player||!Number.isFinite(player.duration)||!player.duration)return;
+  const seek=document.getElementById('audioSeek');
+  if(!seek)return;
+  const r=seek.getBoundingClientRect();
+  const ratio=Math.max(0,Math.min(1,(event.clientX-r.left)/r.width));
+  player.currentTime=ratio*player.duration;
+}
+function updateUi(){
+  if(!player)return;
+  const duration=player.duration;
+  const ratio=Number.isFinite(duration)&&duration>0?Math.min(1,player.currentTime/duration):0;
+  const bar=document.getElementById('audioProgressBar');
+  const time=document.getElementById('audioTime');
+  const seek=document.getElementById('audioSeek');
+  if(bar)bar.style.width=`${ratio*100}%`;
+  if(time)time.textContent=Number.isFinite(duration)?`${fmt(player.currentTime)} / ${fmt(duration)}`:fmt(player.currentTime);
+  if(seek)seek.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
+  persistTick++;
+  if(persistTick%8===0)persist();
+}
+function wirePlayer(a,id,src){
+  player=new Audio(src);
+  activeId=id;
+  player.preload='metadata';
+  const btn=document.getElementById('premiumPlayBtn');
+  const seek=document.getElementById('audioSeek');
+  player.addEventListener('loadedmetadata',()=>{
+    const saved=Number(loadProgress()[id]||0);
+    if(saved>0&&Number.isFinite(player.duration)&&saved<player.duration-10)player.currentTime=saved;
+    if(btn)btn.disabled=false;
+    updateUi();
+  });
+  player.addEventListener('canplay',()=>{if(btn)btn.disabled=false},{once:true});
+  player.addEventListener('timeupdate',updateUi);
+  player.addEventListener('play',()=>setPlaySymbol('❚❚'));
+  player.addEventListener('pause',()=>setPlaySymbol('▶'));
+  player.addEventListener('ended',()=>{clearProgress(id);setPlaySymbol('▶');updateUi()});
+  player.addEventListener('error',()=>unavailable(a));
+  btn?.addEventListener('click',async()=>{
+    if(!player)return;
+    if(player.paused){
+      try{await player.play()}catch{unavailable(a)}
+    }else player.pause();
+  });
+  seek?.addEventListener('click',seekTo);
+  seek?.addEventListener('keydown',e=>{
+    if(!player||!Number.isFinite(player.duration))return;
+    if(e.key==='ArrowRight'){e.preventDefault();player.currentTime=Math.min(player.duration,player.currentTime+10)}
+    if(e.key==='ArrowLeft'){e.preventDefault();player.currentTime=Math.max(0,player.currentTime-10)}
+  });
+  player.load();
+}
+function openAudio(id){
   const a=C.audios[id];if(!a)return;
   const from=currentView();
   const back=from==='modulo'?'modulo':from==='inicio'?'inicio':'ferramentas';
-  stopAll();showView('audio');
+  stopAll();
+  showView('audio');
   const host=document.getElementById('audioExperience');
-  host.innerHTML='<div class="audio-stage"><p>Preparando áudio…</p></div>';
-  const src=a.src||`audio/${id}.mp3`;
-  if(await fileExists(src))playFile(a,src,back);else await playSpeech(a,back);
+  if(!host)return;
+  host.innerHTML=markup(a,back);
+  const src=a.src||`audio/${id}.mp3?v=ampulheta-n2`;
+  wirePlayer(a,id,src);
 }
 
 document.addEventListener('click',event=>{
   const button=event.target.closest?.('[data-audio],[data-tool-audio]');
   if(!button)return;
   const id=button.dataset.audio||button.dataset.toolAudio;
-  if(!id)return;
+  if(!id||!C.audios[id])return;
   event.preventDefault();
   event.stopImmediatePropagation();
   openAudio(id);
 },true);
 
+window.addEventListener('pagehide',persist);
 window.addEventListener('hashchange',()=>{if(location.hash!=='#audio')stopAll()});
+window.SONO_AUDIO={open:openAudio,stop:stopAll};
 })();
