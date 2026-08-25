@@ -1,0 +1,51 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check js/content.js
+          node --check js/app.js
+          node --check js/config.js
+          node --check sw.js
+      - name: Check required files
+        run: |
+          test -f index.html
+          test -f css/styles.css
+          test -f manifest.webmanifest
+          test -f assets/favicon.svg
+          test -f assets/social-preview.svg
+      - name: Check local references
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          root=Path('.')
+          html=(root/'index.html').read_text(encoding='utf-8')
+          refs=re.findall(r'(?:src|href)="([^"]+)"', html)
+          missing=[]
+          for ref in refs:
+              if ref.startswith(('http://','https://','#','mailto:','tel:')):
+                  continue
+              path=(root/ref.split('?',1)[0].split('#',1)[0])
+              if not path.exists():
+                  missing.append(ref)
+          if missing:
+              raise SystemExit('Missing local references: '+', '.join(missing))
+          print('Local references OK')
+          PY
