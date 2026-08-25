@@ -9,17 +9,24 @@ on:
       - 'css/refinements.css'
       - 'js/product-completion.js'
       - 'js/audio-premium.js'
+      - 'js/nav-fix.js'
       - '.github/workflows/finalize-static.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: sono-static-finalization
+  cancel-in-progress: true
+
 jobs:
   finalize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Install SVG renderer
         run: |
           sudo apt-get update -qq
@@ -36,7 +43,8 @@ jobs:
               s=s.replace('<link rel="stylesheet" href="css/styles.css">','<link rel="stylesheet" href="css/styles.css">\n  <link rel="stylesheet" href="css/refinements.css">')
           if 'css/product-completion.css' not in s:
               s=s.replace('</head>','  <link rel="stylesheet" href="css/product-completion.css">\n</head>')
-          s=s.replace('<meta property="og:image" content="assets/social-preview.svg">','<meta property="og:image" content="https://ricmurtapsicologia.github.io/Sleepy-/assets/social-preview.png">')
+          if 'assets/social-preview.svg' in s:
+              s=s.replace('<meta property="og:image" content="assets/social-preview.svg">','<meta property="og:image" content="https://ricmurtapsicologia.github.io/Sleepy-/assets/social-preview.png">')
           if 'property="og:image:width"' not in s:
               s=s.replace('<meta property="og:image" content="https://ricmurtapsicologia.github.io/Sleepy-/assets/social-preview.png">','<meta property="og:image" content="https://ricmurtapsicologia.github.io/Sleepy-/assets/social-preview.png">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="630">\n  <meta property="og:image:type" content="image/png">')
           if 'rel="canonical"' not in s:
@@ -46,6 +54,8 @@ jobs:
               s=s.replace('<script src="js/app.js"></script>','<script src="js/app.js"></script>\n  <script src="js/product-completion.js"></script>')
           if 'js/audio-premium.js' not in s:
               s=s.replace('</body>','  <script src="js/audio-premium.js"></script>\n</body>')
+          if 'js/nav-fix.js' not in s:
+              s=s.replace('</body>','  <script src="js/nav-fix.js"></script>\n</body>')
           p.write_text(s,encoding='utf-8')
           PY
       - name: Commit finalized public assets
@@ -58,4 +68,5 @@ jobs:
             exit 0
           fi
           git commit -m "build: finalizar experiência pública e preview social"
-          git push
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
