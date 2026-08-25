@@ -20,6 +20,7 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,14 +31,30 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install neural TTS renderer
-        run: python -m pip install --upgrade edge-tts
+
+      - name: Install N2 audio renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --upgrade pip
+          pip install edge-tts==7.2.8 pydub
+
       - name: Export scripts
         run: node scripts/export-audio.js /tmp/sono-audios.json
-      - name: Generate pt-BR male neural tracks
+
+      - name: Generate Ampulheta N2 pt-BR male tracks
         env:
           SONO_VOICE: pt-BR-AntonioNeural
         run: python scripts/generate-audio.py /tmp/sono-audios.json audio
+
+      - name: Verify generated tracks
+        run: |
+          test "$(find audio -maxdepth 1 -type f -name '*.mp3' | wc -l)" -ge 15
+          test -f audio/welcome.mp3
+          test -f audio/module1.mp3
+          test -f audio/slow.mp3
+          ffprobe -v error -show_entries stream=codec_name,channels,sample_rate -of default=nw=1 audio/welcome.mp3
+
       - name: Commit generated tracks
         run: |
           git config user.name "github-actions[bot]"
@@ -47,6 +64,6 @@ jobs:
             echo "No audio changes"
             exit 0
           fi
-          git commit -m "build: gerar áudios masculinos naturais"
+          git commit -m "build: gerar audios no perfil N2 Ampulheta"
           git pull --rebase --autostash origin main
           git push origin HEAD:main
