@@ -1,4 +1,4 @@
-const CACHE='sono-em-dia-v6';
+const CACHE='sono-em-dia-v7';
 const ASSETS=['./','./index.html','./css/styles.css','./css/refinements.css','./css/product-completion.css','./css/cognitive.css','./js/content.js','./js/app.js','./js/product-completion.js','./js/audio-premium.js','./js/nav-fix.js','./assets/favicon.svg','./assets/social-preview.svg','./manifest.webmanifest'];
 
 self.addEventListener('install',event=>{
