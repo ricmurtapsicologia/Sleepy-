@@ -1,0 +1,12 @@
+const fs=require('fs');
+const vm=require('vm');
+const path=require('path');
+const source=fs.readFileSync(path.join(process.cwd(),'js/content.js'),'utf8');
+const context={window:{}};
+vm.createContext(context);
+vm.runInContext(source,context,{filename:'js/content.js'});
+const audios=context.window.SONO_CONTENT?.audios||{};
+const out={};
+for(const [id,a] of Object.entries(audios))out[id]={title:a.title,category:a.category,kind:a.kind||'explain',script:a.script};
+fs.writeFileSync(process.argv[2]||'/tmp/sono-audios.json',JSON.stringify(out,null,2),'utf8');
+console.log(`Exportados ${Object.keys(out).length} roteiros de áudio.`);
