@@ -32,7 +32,7 @@ jobs:
           if 'property="og:url"' not in s:
               s=s.replace('<meta property="og:type" content="website">', '<meta property="og:type" content="website">\n  <meta property="og:url" content="https://ricmurtapsicologia.github.io/sono-em-dia-/">')
           image='https://ricmurtapsicologia.github.io/sono-em-dia-/assets/social-preview.png?v=20260825'
-          s=re.sub(r'https://ricmurtapsicologia\.github\.io/sono-em-dia-/assets/social-preview\.png(?:\?v=[^"\']*)?', image, s)
+          s=re.sub(r'https://ricmurtapsicologia\.github\.io/sono-em-dia-/assets/social-preview\.png(?:\?v=[^"]*)?', image, s)
           if 'property="og:image:secure_url"' not in s:
               s=s.replace(f'<meta property="og:image" content="{image}">', f'<meta property="og:image" content="{image}">\n  <meta property="og:image:secure_url" content="{image}">\n  <meta property="og:image:alt" content="Sono em Dia — Entenda seu sono. Cuide melhor das suas noites.">')
           if 'name="twitter:image"' not in s:
