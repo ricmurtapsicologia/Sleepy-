@@ -1,0 +1,1680 @@
+{
+  "owner": "ricmurtapsicologia",
+  "scope": "public active non-fork repositories",
+  "generated_by": "scripts/audit_audio_ecosystem.py",
+  "repository_count": 43,
+  "candidate_repository_count": 7,
+  "repositories": [
+    {
+      "repo": "altaperformance",
+      "html_url": "https://github.com/ricmurtapsicologia/altaperformance",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [
+        {
+          "path": "Panico.mp3",
+          "size": 1468764,
+          "sha": "5ae86273e3e5a784ee4738606e4fdc1754dd092a"
+        }
+      ],
+      "signals": []
+    },
+    {
+      "repo": "bateria.narcisismo",
+      "html_url": "https://github.com/ricmurtapsicologia/bateria.narcisismo",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "cats-2025-4bbm-jf",
+      "html_url": "https://github.com/ricmurtapsicologia/cats-2025-4bbm-jf",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "cats-2025-4bbm-jf-login",
+      "html_url": "https://github.com/ricmurtapsicologia/cats-2025-4bbm-jf-login",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "CATS.pousoalegre",
+      "html_url": "https://github.com/ricmurtapsicologia/CATS.pousoalegre",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "clinicadosono",
+      "html_url": "https://github.com/ricmurtapsicologia/clinicadosono",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": [
+        {
+          "path": "index.html",
+          "signals": [
+            "speech_synthesis"
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "Curso-ATS",
+      "html_url": "https://github.com/ricmurtapsicologia/Curso-ATS",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Curso-ATS-Login",
+      "html_url": "https://github.com/ricmurtapsicologia/Curso-ATS-Login",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "efetivoDAI2",
+      "html_url": "https://github.com/ricmurtapsicologia/efetivoDAI2",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "emocao360",
+      "html_url": "https://github.com/ricmurtapsicologia/emocao360",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Escala-de-Co-Depenpencia-Emocional",
+      "html_url": "https://github.com/ricmurtapsicologia/Escala-de-Co-Depenpencia-Emocional",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Escala-de-Necessidades-Emocionais",
+      "html_url": "https://github.com/ricmurtapsicologia/Escala-de-Necessidades-Emocionais",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Escala-de-Tomada-de-Decisao",
+      "html_url": "https://github.com/ricmurtapsicologia/Escala-de-Tomada-de-Decisao",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Guia-de-Apoio-a-Saude-Mental",
+      "html_url": "https://github.com/ricmurtapsicologia/Guia-de-Apoio-a-Saude-Mental",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "hashimotim",
+      "html_url": "https://github.com/ricmurtapsicologia/hashimotim",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "ICAPS",
+      "html_url": "https://github.com/ricmurtapsicologia/ICAPS",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Inicio-de-Jornada-Terapeutica",
+      "html_url": "https://github.com/ricmurtapsicologia/Inicio-de-Jornada-Terapeutica",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Inventario-de-Tracos-Borderline",
+      "html_url": "https://github.com/ricmurtapsicologia/Inventario-de-Tracos-Borderline",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "JardimdoAutoCuidado",
+      "html_url": "https://github.com/ricmurtapsicologia/JardimdoAutoCuidado",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Luto",
+      "html_url": "https://github.com/ricmurtapsicologia/Luto",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "ManualParticipanteII",
+      "html_url": "https://github.com/ricmurtapsicologia/ManualParticipanteII",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "nova.resolucao.dai",
+      "html_url": "https://github.com/ricmurtapsicologia/nova.resolucao.dai",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "OrientProfissional",
+      "html_url": "https://github.com/ricmurtapsicologia/OrientProfissional",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "painel.indicadores.saude.cbmmg",
+      "html_url": "https://github.com/ricmurtapsicologia/painel.indicadores.saude.cbmmg",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Pilulas-de-Reflexao",
+      "html_url": "https://github.com/ricmurtapsicologia/Pilulas-de-Reflexao",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [
+        {
+          "path": "audio/n2/pr-001.mp3",
+          "size": 2262457,
+          "sha": "b3a82aba09281be9641593a3487cb57291b513ac"
+        },
+        {
+          "path": "audio/n2/pr-002.mp3",
+          "size": 2516576,
+          "sha": "5442eb8d89628cc9df6d83776f4e7a0c11ada461"
+        },
+        {
+          "path": "audio/n2/pr-003.mp3",
+          "size": 2380739,
+          "sha": "34b264692c36b2db39e4884ba9728b4c5eaf9c2d"
+        },
+        {
+          "path": "audio/n2/pr-004.mp3",
+          "size": 2251590,
+          "sha": "ebb9a96891c8b98460119db02ba026a23440b920"
+        },
+        {
+          "path": "audio/n2/pr-005.mp3",
+          "size": 2286280,
+          "sha": "28c3492434911069efddb3231bfd3e6c01843685"
+        },
+        {
+          "path": "audio/n2/pr-006.mp3",
+          "size": 2453046,
+          "sha": "2374027d910878175089e90b2daab5e815b1d73d"
+        },
+        {
+          "path": "audio/n2/pr-007.mp3",
+          "size": 2251172,
+          "sha": "157a0668b4c7a606844312b2058aefec31b7e0a7"
+        },
+        {
+          "path": "audio/n2/pr-008.mp3",
+          "size": 2244902,
+          "sha": "b8acb6b728bb19d6c0ac2d9b2b5a306f5ca513dc"
+        },
+        {
+          "path": "audio/n2/pr-009.mp3",
+          "size": 2162146,
+          "sha": "f36e84f5a7d3e29c62d4567eb620981a7657dfe9"
+        },
+        {
+          "path": "audio/n2/pr-010.mp3",
+          "size": 2181791,
+          "sha": "5aabf4a4d33ab313485d15ce11347675abf4ed4a"
+        },
+        {
+          "path": "PODCAST 000 REGISTRO DE PENSAMENTOS DISFUNCIONAIS.mp3",
+          "size": 877346,
+          "sha": "d7ce9376a03abd37cc292344bf95db752567020f"
+        },
+        {
+          "path": "PODCAST 001 OUVIR NO FINAL DE DOMINGO.mp3",
+          "size": 2351255,
+          "sha": "d7c2392505ec758b39a1e840edb8fd968dd903c0"
+        },
+        {
+          "path": "PODCAST 002 LIDANDO COM PENSAMENTOS DE CONTROLE.mp3",
+          "size": 2908897,
+          "sha": "fb996075166fce42296aff57275eb47883970829"
+        },
+        {
+          "path": "PODCAST 003 LIDANDO COM FOMO.mp3",
+          "size": 3076907,
+          "sha": "da2fb5073e36c6ae97cb53a5f3670316b982b750"
+        },
+        {
+          "path": "PODCAST 004 LIDANDO COM O TÉDIO.mp3",
+          "size": 2658156,
+          "sha": "af49de8d87e9c484421e2784af396ecdf65293f4"
+        },
+        {
+          "path": "PODCAST 005 SUPERANDO INSEGURANÇA.mp3",
+          "size": 1921695,
+          "sha": "0c303bc085990a48af5066572ff561219911a1f0"
+        },
+        {
+          "path": "PODCAST 006 FINJA ATÉ SER VERDADE.mp3",
+          "size": 3391703,
+          "sha": "6c728515e19131d50ff7856c213b6848e27192bc"
+        },
+        {
+          "path": "PODCAST 007 MEDITAÇÃO GUIADA.mp3",
+          "size": 2707710,
+          "sha": "aba778b4fc1f45647e5cb01f3a58cca371045656"
+        }
+      ],
+      "signals": [
+        {
+          "path": ".github/workflows/audio-kokoro-production-main.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/audio-v3.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/enforce-ten-audios.yml",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": ".github/workflows/generate-audio-n2.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "audio-freeze-20260825.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "audio/n2/audio-spec.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "data/audio-v3.json",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "data/pilulas.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "index.html",
+          "signals": [
+            "audio_tag"
+          ]
+        },
+        {
+          "path": "package.json",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "README.md",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "scripts/audio-build.mjs",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "scripts/generate_audio_n2.py",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "scripts/render-tts-openai.mjs",
+          "signals": [
+            "tts_term"
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "plano-seguranca-abordadores",
+      "html_url": "https://github.com/ricmurtapsicologia/plano-seguranca-abordadores",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "planosegurancaemocional",
+      "html_url": "https://github.com/ricmurtapsicologia/planosegurancaemocional",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "plataforma.terapeutica",
+      "html_url": "https://github.com/ricmurtapsicologia/plataforma.terapeutica",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Podcast-ATS-CBMMG",
+      "html_url": "https://github.com/ricmurtapsicologia/Podcast-ATS-CBMMG",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [
+        {
+          "path": "001 Aborgagem Técnica - comunicação que salva!.mp3.mp3",
+          "size": 1187949,
+          "sha": "4195719360958d239ceb16382706b4b33ed835aa"
+        },
+        {
+          "path": "002 Comportamentos Desejáveis na Abordagem Técnica.mp3.mp3",
+          "size": 1386583,
+          "sha": "e178c33998b43ccbbbe9cfa1be13397761881a86"
+        },
+        {
+          "path": "003 Comportamentos que Devem Ser Evitados na Abordagem Técnica.mp3.mp3",
+          "size": 1926284,
+          "sha": "2a96bc044e5b55a3b1699828ab668448c0a0007b"
+        },
+        {
+          "path": "004 A Aproximação Segura no Atendimento a Tentativas de Suicídio.mp3.mp3",
+          "size": 1974201,
+          "sha": "82a0fae8af6bc0e104d33b6f902b31e208d0e32c"
+        },
+        {
+          "path": "005 O Poder de Ouvir.mp3.mp3",
+          "size": 948026,
+          "sha": "e2a185c255a42ad4aafb503ede547562b25e4729"
+        },
+        {
+          "path": "006 A Apresentação Pessoal A Primeira Conexão.mp3.mp3",
+          "size": 1364875,
+          "sha": "5a928f5dd98fcb1b66327b13d6fe975579802008"
+        },
+        {
+          "path": "007 Perguntas Simples -  Rastreando Fatores de Risco e Proteção.mp3.mp3",
+          "size": 1750521,
+          "sha": "0aa49eb3f4285c07cdbc86c573ceeae1673036ee"
+        },
+        {
+          "path": "008 Usando Perguntas Simples com Tentante de Perfil Depressivo.mp3.mp3",
+          "size": 3826338,
+          "sha": "94bd41274efb0f0e6fbd59e4ffa6d7435f84dc08"
+        },
+        {
+          "path": "009 Usando Perguntas Simples com Tentante de Perfil Agressivo.mp3.mp3",
+          "size": 4007554,
+          "sha": "a60e7535a307dfa840e64c223ecb4738ec4eddc8"
+        },
+        {
+          "path": "010 Usando Perguntas Simples com Tentante de Perfil Psicótico.mp3.mp3",
+          "size": 5504199,
+          "sha": "501a11c7ecafa7d940e494507750b33cb8491cdb"
+        },
+        {
+          "path": "011 Usando Perguntas Complexas para Apoiar o Tentante.mp3.mp3",
+          "size": 2685512,
+          "sha": "c2ba76b2acf0de3b69083b57daeadb186c05440e"
+        },
+        {
+          "path": "012 Ferramentas de Diálogo Influenciando a Reflexão do Tentante.mp3.mp3",
+          "size": 2066692,
+          "sha": "e5926da851063fb68cdcf40f2902700570b10975"
+        },
+        {
+          "path": "013 Técnica do Sucesso Anterior Resgatando Estratégias do Passado.mp3.mp3",
+          "size": 3610968,
+          "sha": "000c3a94010ded5f38de58621575e544d5440e17"
+        },
+        {
+          "path": "014 Ponte para o Passado Resgatando Memórias Agradáveis.mp3.mp3",
+          "size": 4319832,
+          "sha": "ca19f196169f8a5fe34573ef5af107844220b3a9"
+        },
+        {
+          "path": "015 Ponte para o Futuro Criando Perspectivas Positivas.mp3.mp3",
+          "size": 3802766,
+          "sha": "900f18673aefa0565292e7daa0cfd443dea712d9"
+        },
+        {
+          "path": "016 Paráfrase Resumida Refinando o Foco no Diálogo.mp3.mp3",
+          "size": 1784112,
+          "sha": "cb38d554ca3387ec73c98973a6e65d1f202a6bd0"
+        },
+        {
+          "path": "017 Especificidades para Abordar Tentantes de Perfil Depressivo.mp3.mp3",
+          "size": 1630366,
+          "sha": "ad9e79a6d22e5fbdc6469a043d852d353349d9d5"
+        },
+        {
+          "path": "018 Especificidades para Abordar Tentantes de Perfil Agressivo.mp3.mp3",
+          "size": 1708069,
+          "sha": "b9dc475b645e6d4c019a166c2fe7a76962b21bd8"
+        },
+        {
+          "path": "019 Especificidades para Abordar Tentantes de Perfil Psicótico.mp3.mp3",
+          "size": 1848042,
+          "sha": "80f89644bae86774175dc077c7dffa8478f0b7bc"
+        },
+        {
+          "path": "020 Entrada Forçada Quando a Segurança Exige Ação.mp3.mp3",
+          "size": 2420910,
+          "sha": "3d56db3a8bc08d6138c28b90eed420909398c382"
+        },
+        {
+          "path": "021 Encerramento Continuemos a Girar a Ampulheta da Vida.mp3.mp3",
+          "size": 1635435,
+          "sha": "9ec7a167d50010f669b83751e0b5d21845bbf624"
+        },
+        {
+          "path": "A2 000 Desvendando as Engrenagens do Comportamento Suicida.mp3",
+          "size": 1310465,
+          "sha": "27d9593e3f3d80cc680bdf06bb0465858a339506"
+        },
+        {
+          "path": "A2 001 A Origem do Suicídio.mp3",
+          "size": 2585115,
+          "sha": "72619a3bafbdf88f5efd77fad3776f49f41174bb"
+        },
+        {
+          "path": "A2 002 Os Bastidores do Cérebro.mp3",
+          "size": 1949425,
+          "sha": "2f04495d4eb4f7892c918c8e018b4d89515b777d"
+        },
+        {
+          "path": "A2 003 O Peso da Mente.mp3",
+          "size": 3084417,
+          "sha": "e5e6956bb833825d50e6d59e741e299645f7bead"
+        },
+        {
+          "path": "A2 004 Maria e as sombras da depressao.mp3",
+          "size": 2787320,
+          "sha": "974700ab929ce75ef73c2e32dd1422332717f112"
+        },
+        {
+          "path": "A2 005 Cláudio e os Ciclos do TAB.mp3",
+          "size": 2229395,
+          "sha": "e9573ce0d1dfc2c45f997af2d9d764c279528ea0"
+        },
+        {
+          "path": "A2 006 Fernanda na Rede da Dependência.mp3",
+          "size": 3048729,
+          "sha": "db20785ecb8269e40a23c6880e091b8913e88037"
+        },
+        {
+          "path": "A2 007 Entrevista com Júlia.mp3",
+          "size": 3274812,
+          "sha": "bb8faa6785badc2354d20ca0cc125567c41d295a"
+        },
+        {
+          "path": "A2 008 Entrevista com Dra Sara.mp3",
+          "size": 3105527,
+          "sha": "a242968c68255d687181e945f10b6c7bbc851662"
+        },
+        {
+          "path": "A2 009 Dona Lurdes e sua irmã.mp3",
+          "size": 2786296,
+          "sha": "c257b62dea9f866244f6765234ec6675ea30c0db"
+        },
+        {
+          "path": "A2 010 Fatores Invisíveis Vulnerabilidades Sociais e Filosóficas.mp3",
+          "size": 2478928,
+          "sha": "2d3bb3d3b4765d4c3c2e2927eb208716fd8c13c8"
+        },
+        {
+          "path": "A2 011 Quando o Cérebro Quebra.mp3",
+          "size": 1998358,
+          "sha": "a475230f7e47e73cc92b6b7632c16fd03fb6ffe4"
+        },
+        {
+          "path": "A2 012 A Impulsividade e o Comportamento de Fuga.mp3",
+          "size": 3038630,
+          "sha": "aea5bf763a95cc908fd48c3a655ae1c4b817f0c2"
+        },
+        {
+          "path": "A3 013 Um Novo Olhar para as Engrenagens.mp3",
+          "size": 2432661,
+          "sha": "6846e1be72955f9e8c7e4e9ef4ed8ced4f9979dd"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-001-s3n2.mp3",
+          "size": 830528,
+          "sha": "56beb0d716a7e2c0f8843c5b5516770e31efc565"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-002-s3n2.mp3",
+          "size": 1235113,
+          "sha": "315884b61223868500f7867afae945638942a6f0"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-003-s3n2.mp3",
+          "size": 1747113,
+          "sha": "b39a65fc139891a51f6b4134fca598d3b6a7a40b"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-004-s3n2.mp3",
+          "size": 1699884,
+          "sha": "49db83540f7aad7b1e47cfdd21cb3cac7d3c4b3e"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-005-s3n2.mp3",
+          "size": 844739,
+          "sha": "a3e4449773548735bddcbc0e6a198fe14bd9d082"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-006-s3n2.mp3",
+          "size": 1134803,
+          "sha": "bd5fdb2bbb39799676c2a6ebffb184c8b0d8c965"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-007-s3n2.mp3",
+          "size": 1499681,
+          "sha": "b8f9179bacf744ad066b6e3adbfd83060fee04bb"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-008-s3n2.mp3",
+          "size": 3375900,
+          "sha": "93b2bd674b8f31ecd97b7ede773e8d2849f0db8d"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-009-s3n2.mp3",
+          "size": 3517588,
+          "sha": "2ed6ba0a616639491caa7b21da5a3de6092c197e"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-010-s3n2.mp3",
+          "size": 4759345,
+          "sha": "1a3a52ee8d15120fcc90bb0dc49f4ba1e5fd2e51"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-011-s3n2.mp3",
+          "size": 2385337,
+          "sha": "cff10e6622ac4f44d74d201b0d826fded4392eb8"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-012-s3n2.mp3",
+          "size": 1775952,
+          "sha": "1ce4255161b3ac61e75cf3848ed2a2eeec730ab8"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-013-s3n2.mp3",
+          "size": 3142679,
+          "sha": "5225842a0a3c1e46e6f69e4bfde95cdd0260241e"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-014-s3n2.mp3",
+          "size": 3813085,
+          "sha": "0a7bbb39cf5ab42851b8eceae51a701a52c00ece"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-015-s3n2.mp3",
+          "size": 3306101,
+          "sha": "907e555ce7d132ddb81b6b2327e28822ab3f6dca"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-016-s3n2.mp3",
+          "size": 1508040,
+          "sha": "9b054745897b28fd533a8ce6b1e886cb79983ea7"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-017-s3n2.mp3",
+          "size": 1421105,
+          "sha": "f582162d9d99db83431945b8af3da4970af1aedc"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-018-s3n2.mp3",
+          "size": 1549000,
+          "sha": "411fcd17e2e90efed3dacec0859f56122990b45c"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-019-s3n2.mp3",
+          "size": 1500517,
+          "sha": "fda15a51679a744d3a313be99295a9726f138b3e"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-020-s3n2.mp3",
+          "size": 2098199,
+          "sha": "89099e8b21da3eccd1f598377c3d7d915c94b1c0"
+        },
+        {
+          "path": "assets/audio/serie-1/a1-021-s3n2.mp3",
+          "size": 1353395,
+          "sha": "3d7ac6c7aac4bff9c5186b71bcf96ed1276626a8"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-000-s3v2.mp3",
+          "size": 1233859,
+          "sha": "1068737842bc9710238671521f1d02c22dce5027"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-000-s3v3.mp3",
+          "size": 1158626,
+          "sha": "795a5eda25182df64fce34c78a2cd597a5c3f6f7"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-000.mp3",
+          "size": 1167404,
+          "sha": "8a2a27eccc0d38e8819cf3c37a19140a8f2770ca"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-001-s3v2.mp3",
+          "size": 3000991,
+          "sha": "00e432606263cef3a127555e657f2d4972286646"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-001-s3v3.mp3",
+          "size": 2860556,
+          "sha": "6f803da9191c16946f55f4813ed1a2d8bc2ee51d"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-001.mp3",
+          "size": 2801206,
+          "sha": "6ab2123d50486399621553f8d984685c4c1488ba"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-002-s3v2.mp3",
+          "size": 2114917,
+          "sha": "f50160bfd50d297df62a6a1bdadc3ed2d43555a1"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-002-s3v3.mp3",
+          "size": 2030071,
+          "sha": "0175701b268f44e34d2c3f125606e085f30bb1f9"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-002.mp3",
+          "size": 1978662,
+          "sha": "13d17f5ffa3d8ee997794072520d5284b83ddfad"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-003-s3v2.mp3",
+          "size": 3336194,
+          "sha": "af4008e91a0459564f50c11426b0ab18d0f3eafe"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-003-s3v3.mp3",
+          "size": 3138917,
+          "sha": "db5c246dc35c9cd413c1ecb1fd95c30b8c236aee"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-003.mp3",
+          "size": 3115511,
+          "sha": "03eda5c20f3cb8174436f6020c36fcd42b3ceb63"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-004-s3v2.mp3",
+          "size": 3447789,
+          "sha": "8b96414c9db5deca00299bbe22d73b576b24aa10"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-004-s3v3.mp3",
+          "size": 3243825,
+          "sha": "36534a5b986cee5c105416b9c370fb4bd6a38e64"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-004.mp3",
+          "size": 3098793,
+          "sha": "d9928c66afdb67de029de8427c4a9a237d5e7ad2"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-005-s3v2.mp3",
+          "size": 2679580,
+          "sha": "8b37e3d680d021b84201d911cab3982726cd9e3a"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-005-s3v3.mp3",
+          "size": 2512396,
+          "sha": "ff6bedda963d6542cf97acf17ed6c7a087c71a1b"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-005.mp3",
+          "size": 2450538,
+          "sha": "9270dbdbf4b1b1a174247bc2bad10433fdfdaecb"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-006-s3v2.mp3",
+          "size": 3747884,
+          "sha": "76296932735d46e87b5b473ee4d61acd118bf2c5"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-006-s3v3.mp3",
+          "size": 3378826,
+          "sha": "f5153c4fbad5558de3c5e414c0f28a0b20a33387"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-006.mp3",
+          "size": 3195759,
+          "sha": "724fb6b43515484c218b17546e89a65df6372780"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-007-s3v2.mp3",
+          "size": 3755825,
+          "sha": "bc5084bd013dde20ab89a3827fea2fedc23dd660"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-007-s3v3.mp3",
+          "size": 3413934,
+          "sha": "0d1a31ba1a9742fcd1a2841acb4d6b50357d90c3"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-007.mp3",
+          "size": 3085000,
+          "sha": "abb2b5a6da5a828c477eced3bd3f2d22bc317fae"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-008-s3v2.mp3",
+          "size": 3818519,
+          "sha": "dff8fa5f607613b4ea602bfe2f8187ae375e4ac1"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-008-s3v3.mp3",
+          "size": 3511319,
+          "sha": "8b32949c69b0fb9ae9ebee2bc74493e8a53df901"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-008.mp3",
+          "size": 3135991,
+          "sha": "aee51289654d16b7eac535ec32ed2742922bf942"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-009-s3v2.mp3",
+          "size": 3391782,
+          "sha": "42c3fde3a38d1a4e27d79dfa802da651a10b0654"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-009-s3v3.mp3",
+          "size": 2837568,
+          "sha": "333f54dea28105baabe2d813855df31acbf3d378"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-009.mp3",
+          "size": 2963374,
+          "sha": "095a10720710ec26b3f73dff18d0ffdc78148f24"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-010-s3v2.mp3",
+          "size": 2577598,
+          "sha": "5b43d80627a34fb3de2243179aca89f2a5761cf6"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-010-s3v3.mp3",
+          "size": 2407906,
+          "sha": "68fcc045ce5cbe2e94825c4d4281350b62016eb3"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-010.mp3",
+          "size": 2364439,
+          "sha": "8ebefe2672c67244ee667a41295960d578e85bd2"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-011-s3v2.mp3",
+          "size": 2459733,
+          "sha": "a59283df2723e4a4ac439e16c5a3bb9561b3dbf7"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-011-s3v3.mp3",
+          "size": 2300073,
+          "sha": "63ebc64ab4961538a6b89c3c62763ec1222c7798"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-011.mp3",
+          "size": 2285444,
+          "sha": "5d19316ee179f37ba30a9627c807a02dc26e8fd8"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-012-s3v2.mp3",
+          "size": 2761082,
+          "sha": "f41c76727216fa222a34062c6bf4e17435635d90"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-012-s3v3.mp3",
+          "size": 2578852,
+          "sha": "bd0b3e579393267f5baf808d092ac40ebc8d6fbb"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-012.mp3",
+          "size": 2529951,
+          "sha": "9e3052e23ee41c8e0b8f229a6bc9f1a0dbb66eb8"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-013-s3v2.mp3",
+          "size": 2492334,
+          "sha": "7e8d748c70b4d3d1386e3d2198cb6ddd98f44716"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-013-s3v3.mp3",
+          "size": 2331838,
+          "sha": "f16522dada6b49411dd1b2c18a6d2c23f92826ad"
+        },
+        {
+          "path": "assets/audio/serie-2/a2-013.mp3",
+          "size": 2309686,
+          "sha": "bca047e46d8e9bbbc4c5ff2cdb1b19f89bdd6bc3"
+        },
+        {
+          "path": "assets/audio/serie-3/psp-01.mp3",
+          "size": 2430058,
+          "sha": "70056703484a23306b4fd01f83141fe1762b67b3"
+        },
+        {
+          "path": "assets/audio/serie-3/psp-02.mp3",
+          "size": 2473108,
+          "sha": "47b63c5d6253c977cdb5a08ba1ef679f1cd7b523"
+        },
+        {
+          "path": "assets/audio/serie-3/psp-03.mp3",
+          "size": 2168834,
+          "sha": "5786d1a48636b86f59805cca85d555bdf3b7679a"
+        },
+        {
+          "path": "assets/audio/serie-3/psp-04.mp3",
+          "size": 2263293,
+          "sha": "ac1cc040b231e8672b37de2b3406c789ce84927d"
+        },
+        {
+          "path": "assets/audio/serie-3/psp-05.mp3",
+          "size": 2076465,
+          "sha": "03c4035d92765362a97f95e7704bfc516cba5a39"
+        },
+        {
+          "path": "assets/audio/serie-3/psp-06.mp3",
+          "size": 2163818,
+          "sha": "bbaaa39f89d8c93bb27eaef1c0b9aabb4fa2e236"
+        },
+        {
+          "path": "assets/audio/serie-3/psp-07.mp3",
+          "size": 2010845,
+          "sha": "57b2f065aaf61856ee47d86114db20cb240c0019"
+        },
+        {
+          "path": "assets/audio/serie-3/psp-08.mp3",
+          "size": 2056403,
+          "sha": "38711152aee2ff47cc91b6678a81d1409459b2a3"
+        },
+        {
+          "path": "assets/audio/serie-3/psp-09.mp3",
+          "size": 2176357,
+          "sha": "cbb0b641e8648fee01844cb74992af04e58b12e6"
+        },
+        {
+          "path": "assets/audio/serie-3/psp-10.mp3",
+          "size": 2497350,
+          "sha": "3f6b8be2617464902977ba7ad96d8407b66a06f2"
+        }
+      ],
+      "signals": [
+        {
+          "path": ".github/workflows/generate-psp-audio.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/remaster-series1-n2.yml",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/remaster-series2-n2.yml",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "app.js",
+          "signals": [
+            "audio_tag",
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "assets/audio/serie-1/quality.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "assets/audio/serie-2/quality-s3-parity.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "assets/audio/serie-2/quality.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "psp.js",
+          "signals": [
+            "audio_tag"
+          ]
+        },
+        {
+          "path": "PYTHON_LAYER.md",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "README_SERIE3_AUDIO.md",
+          "signals": [
+            "audio_tag"
+          ]
+        },
+        {
+          "path": "scripts/audio_pipeline.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/generate_psp_audio.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/remaster_series1_n2.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/remaster_series2_n2.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "ProgetoSegundaChance",
+      "html_url": "https://github.com/ricmurtapsicologia/ProgetoSegundaChance",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Projeto-Segunda-Chance",
+      "html_url": "https://github.com/ricmurtapsicologia/Projeto-Segunda-Chance",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "provaATScefs",
+      "html_url": "https://github.com/ricmurtapsicologia/provaATScefs",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Rastreio-de-Impulsividade",
+      "html_url": "https://github.com/ricmurtapsicologia/Rastreio-de-Impulsividade",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "rastreio.de.esquemas",
+      "html_url": "https://github.com/ricmurtapsicologia/rastreio.de.esquemas",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "Rastreioclinico",
+      "html_url": "https://github.com/ricmurtapsicologia/Rastreioclinico",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "rastreiomodosesquematicos",
+      "html_url": "https://github.com/ricmurtapsicologia/rastreiomodosesquematicos",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "rastreioTDAH",
+      "html_url": "https://github.com/ricmurtapsicologia/rastreioTDAH",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "regulacao-polivagal.",
+      "html_url": "https://github.com/ricmurtapsicologia/regulacao-polivagal.",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [
+        {
+          "path": "audio/n2/adiar-01.mp3",
+          "size": 69007,
+          "sha": "4278a2905d8a254f9bf32095dfdc2efb837be756"
+        },
+        {
+          "path": "audio/n2/adiar-02.mp3",
+          "size": 64409,
+          "sha": "56ac383fac0bafc782784697d6564ed7df8a35a0"
+        },
+        {
+          "path": "audio/n2/adiar-03.mp3",
+          "size": 63573,
+          "sha": "3a13b29c9192dd8a23ffe8d0949c0a0223613057"
+        },
+        {
+          "path": "audio/n2/adiar-04.mp3",
+          "size": 67335,
+          "sha": "0d6af0eb00a1cafd9f74029b4af817388319724f"
+        },
+        {
+          "path": "audio/n2/complete.mp3",
+          "size": 112475,
+          "sha": "061a44d0eeddc196af39c5e98d9f2b418333917f"
+        },
+        {
+          "path": "audio/n2/conexao-01.mp3",
+          "size": 62737,
+          "sha": "8e3446dc79dbcb3843bf1f070891409769b3c3be"
+        },
+        {
+          "path": "audio/n2/conexao-02.mp3",
+          "size": 77366,
+          "sha": "f0adebd0578c39c5f9689fd0a097bf899fda06f5"
+        },
+        {
+          "path": "audio/n2/conexao-03.mp3",
+          "size": 73186,
+          "sha": "0787a4ca4ae95fca55cdc0f93cdff52652d18884"
+        },
+        {
+          "path": "audio/n2/conexao-04.mp3",
+          "size": 57304,
+          "sha": "c23bfb809f8dd56579b6a23182ed5a07407cd12a"
+        },
+        {
+          "path": "audio/n2/desfusao-01.mp3",
+          "size": 86143,
+          "sha": "aa40dfd5854788262ee6a02cda79e9c5ba005b90"
+        },
+        {
+          "path": "audio/n2/desfusao-02.mp3",
+          "size": 74858,
+          "sha": "fce7dac4dd24fe72b98649f2a8674e22e0d4d63c"
+        },
+        {
+          "path": "audio/n2/desfusao-03.mp3",
+          "size": 71097,
+          "sha": "8d0a084525384c01bdddfcd62c6a6b75c39074a2"
+        },
+        {
+          "path": "audio/n2/desfusao-04.mp3",
+          "size": 87815,
+          "sha": "151ad86b15fcba3a3bc15c990bc1a66d7fb99734"
+        },
+        {
+          "path": "audio/n2/exalar-01.mp3",
+          "size": 63991,
+          "sha": "16c0994cb0ad5471d30ec81e8aa81379932d73e7"
+        },
+        {
+          "path": "audio/n2/exalar-02.mp3",
+          "size": 59394,
+          "sha": "9aa00b4fd92ae07b7cf40744a01c62aa32eb4612"
+        },
+        {
+          "path": "audio/n2/exalar-03.mp3",
+          "size": 61902,
+          "sha": "042a7375818d2ba6cf3c6ebc53b7b361a01c3b95"
+        },
+        {
+          "path": "audio/n2/exalar-04.mp3",
+          "size": 47273,
+          "sha": "93b8b5a8fb7eccbb64232bfddcb7919e08e01150"
+        },
+        {
+          "path": "audio/n2/exalar-05.mp3",
+          "size": 71515,
+          "sha": "fa3ffed61c191a3a402942ef97512e866fe2aeea"
+        },
+        {
+          "path": "audio/n2/movimento-01.mp3",
+          "size": 52706,
+          "sha": "192a5a527f9648d1732e56315f517a4858054edf"
+        },
+        {
+          "path": "audio/n2/movimento-02.mp3",
+          "size": 50199,
+          "sha": "edf406eb06205b6a8964c858c01491ea0c3b54ec"
+        },
+        {
+          "path": "audio/n2/movimento-03.mp3",
+          "size": 54378,
+          "sha": "bc9dee583010259df846fda3196c5b4c8c3bdaa7"
+        },
+        {
+          "path": "audio/n2/movimento-04.mp3",
+          "size": 66081,
+          "sha": "5e9009f9f523677ab62e444597c2eb17c8ecde3f"
+        },
+        {
+          "path": "audio/n2/movimento-05.mp3",
+          "size": 92831,
+          "sha": "fa8a5aeefa5eb510c61977d306c94474a57f3798"
+        },
+        {
+          "path": "audio/n2/onda-01.mp3",
+          "size": 56886,
+          "sha": "73f9aff28f078e2a60bc0ba419fac36635244535"
+        },
+        {
+          "path": "audio/n2/onda-02.mp3",
+          "size": 61066,
+          "sha": "1e3b02d7da90e7e74632d37a1e57d2b8f8a17808"
+        },
+        {
+          "path": "audio/n2/onda-03.mp3",
+          "size": 67335,
+          "sha": "31b389edc4473f065c2ce59dfee0eed849c67361"
+        },
+        {
+          "path": "audio/n2/onda-04.mp3",
+          "size": 66499,
+          "sha": "41a656d39d4a6108bcfff803655f4553f7d52ead"
+        },
+        {
+          "path": "audio/n2/onda-05.mp3",
+          "size": 68171,
+          "sha": "baaf789d3638335f3bef82af7f468b3c5f622c32"
+        },
+        {
+          "path": "audio/n2/orientar-01.mp3",
+          "size": 67753,
+          "sha": "4ff9c7ec75fcc84cc3043c30f1e04f4a696d9976"
+        },
+        {
+          "path": "audio/n2/orientar-02.mp3",
+          "size": 69007,
+          "sha": "80284f29e2171b881db65aa10dd5d49654d9660d"
+        },
+        {
+          "path": "audio/n2/orientar-03.mp3",
+          "size": 51871,
+          "sha": "f0340ee7b266ce20de2be329c4e308d12f9516be"
+        },
+        {
+          "path": "audio/n2/orientar-04.mp3",
+          "size": 55214,
+          "sha": "9eb33695d090bd3cbaeaca7780e8e73258f856b2"
+        },
+        {
+          "path": "audio/n2/orientar-05.mp3",
+          "size": 76530,
+          "sha": "451dafa3a1ffc74f5ec1854269ffc7b8a5d1f26a"
+        },
+        {
+          "path": "audio/n2/pressao-01.mp3",
+          "size": 58140,
+          "sha": "451a4d0e3031967d9d74d4e88bbdd7ba747a42f5"
+        },
+        {
+          "path": "audio/n2/pressao-02.mp3",
+          "size": 62319,
+          "sha": "1ae2a4fcb9dcf8b8d56c479142f9f56f49e1c7c9"
+        },
+        {
+          "path": "audio/n2/pressao-03.mp3",
+          "size": 58976,
+          "sha": "f8d6a796b49d888450604fb1d2a4445f6edc9560"
+        },
+        {
+          "path": "audio/n2/pressao-04.mp3",
+          "size": 87815,
+          "sha": "0e3159f575b69a005162670d3bb2fb66f20b75f1"
+        },
+        {
+          "path": "audio/n2/sabia-01.mp3",
+          "size": 54378,
+          "sha": "0b76c1cea82aedf75db8495730ab384318417578"
+        },
+        {
+          "path": "audio/n2/sabia-02.mp3",
+          "size": 55214,
+          "sha": "ed1c4c8a2d5c51ce150166b1b2dcfdb6c24f5e30"
+        },
+        {
+          "path": "audio/n2/sabia-03.mp3",
+          "size": 66081,
+          "sha": "def9f57dade73223604f966f5a22be71508ef02f"
+        },
+        {
+          "path": "audio/n2/sabia-04.mp3",
+          "size": 63573,
+          "sha": "eef6b11638946aa4173c5782ad125a98965484ba"
+        },
+        {
+          "path": "audio/n2/sabia-05.mp3",
+          "size": 73186,
+          "sha": "220f7c5dfbe61692077b318d902c18faeaa3a30d"
+        },
+        {
+          "path": "audio/n2/stop-01.mp3",
+          "size": 90323,
+          "sha": "7a148cd4c5c542967c70ec4f6688e4fcbf782f89"
+        },
+        {
+          "path": "audio/n2/stop-02.mp3",
+          "size": 62737,
+          "sha": "b9315a0469e105fe06eacebb2d6e6f3a1c3cfd28"
+        },
+        {
+          "path": "audio/n2/stop-03.mp3",
+          "size": 77784,
+          "sha": "bef5ff689ae94aaf490842852107b07d4ab35e16"
+        },
+        {
+          "path": "audio/n2/stop-04.mp3",
+          "size": 76112,
+          "sha": "e711fe9fb95e50979b448b28da2f400a87e232ad"
+        },
+        {
+          "path": "audio/n2/temperatura-01.mp3",
+          "size": 61902,
+          "sha": "1b67271b8976206fb523f523fca4dda7f610ba8d"
+        },
+        {
+          "path": "audio/n2/temperatura-02.mp3",
+          "size": 79038,
+          "sha": "3213134fae713d4cf0f5d2f72ff1849bed8f511c"
+        },
+        {
+          "path": "audio/n2/temperatura-03.mp3",
+          "size": 38914,
+          "sha": "9a6121c6b6436bb2a078d5143acbf8a4834f1e53"
+        },
+        {
+          "path": "audio/n2/temperatura-04.mp3",
+          "size": 57722,
+          "sha": "f326a4ac4ec7565f99f8526771cb79ffee2b3774"
+        },
+        {
+          "path": "audio/n2/valores-01.mp3",
+          "size": 53542,
+          "sha": "2232343c8416cec139302fe2ab84b9512c331779"
+        },
+        {
+          "path": "audio/n2/valores-02.mp3",
+          "size": 131283,
+          "sha": "ab83b7bfb5bed3daa640f1a3913c3cb5b5fc5869"
+        },
+        {
+          "path": "audio/n2/valores-03.mp3",
+          "size": 68589,
+          "sha": "98048e3d809a634e335f88779b2c8a59ae4ac303"
+        },
+        {
+          "path": "audio/n2/valores-04.mp3",
+          "size": 78202,
+          "sha": "4ada4e7defec62f3706ce3d55a483483c0b2120f"
+        }
+      ],
+      "signals": [
+        {
+          "path": ".github/workflows/generate-audio-n2.yml",
+          "signals": [
+            "speech_synthesis",
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "audio-freeze-20260825.json",
+          "signals": [
+            "speech_synthesis"
+          ]
+        },
+        {
+          "path": "audio-n2.js",
+          "signals": [
+            "new_audio"
+          ]
+        },
+        {
+          "path": "audio/n2/manifest.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/generate_audio_n2.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "revisaoIto30",
+      "html_url": "https://github.com/ricmurtapsicologia/revisaoIto30",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "RPD",
+      "html_url": "https://github.com/ricmurtapsicologia/RPD",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [
+        {
+          "path": "audio/rpd1-n2.mp3",
+          "size": 1011923,
+          "sha": "076013643e0d0029637efb6c1d7564d6e55b23a4"
+        },
+        {
+          "path": "RPD1.mp3",
+          "size": 877346,
+          "sha": "d7ce9376a03abd37cc292344bf95db752567020f"
+        }
+      ],
+      "signals": [
+        {
+          "path": ".github/workflows/remaster-audio-n2.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "_includes/v210_intro.html",
+          "signals": [
+            "audio_tag",
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "assets/js/audio-n2.js",
+          "signals": [
+            "audio_tag"
+          ]
+        },
+        {
+          "path": "audio-freeze-20260825.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "audio/audio-spec.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "index.html",
+          "signals": [
+            "audio_tag",
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "README.md",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/remaster_rpd_n2.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "tests/rpd.spec.js",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "sono-em-dia-",
+      "html_url": "https://github.com/ricmurtapsicologia/sono-em-dia-",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [
+        {
+          "path": "audio/anxiety.mp3",
+          "size": 1031149,
+          "sha": "ba11e3eb158aec565b6503a360da6bc3d82923a1"
+        },
+        {
+          "path": "audio/awake.mp3",
+          "size": 919136,
+          "sha": "3359045547f6768d9b94f3d0bdedb65d7fb87048"
+        },
+        {
+          "path": "audio/frustrated.mp3",
+          "size": 858532,
+          "sha": "95d4ae8d298be58cb3a11a06880f9972dfdd31f5"
+        },
+        {
+          "path": "audio/middle.mp3",
+          "size": 914120,
+          "sha": "94912aeb2fba0a6e578507c4a5cd57098eb55ac0"
+        },
+        {
+          "path": "audio/mind.mp3",
+          "size": 1086319,
+          "sha": "d4f753ce35b1b9146715165c918f5747c04fcaa0"
+        },
+        {
+          "path": "audio/module1.mp3",
+          "size": 1034493,
+          "sha": "11b57d3f6e91fd72ef5fc66043c592cca4ecbd59"
+        },
+        {
+          "path": "audio/module2.mp3",
+          "size": 958842,
+          "sha": "2527a6a5dfa65efc5707f8f15650db13742d4514"
+        },
+        {
+          "path": "audio/module3.mp3",
+          "size": 1006071,
+          "sha": "3e6ebdbfcb576a34af3932137af5aa40d9c72b1f"
+        },
+        {
+          "path": "audio/module4.mp3",
+          "size": 958842,
+          "sha": "336039095f539a8226f671260752b293ccc2d78e"
+        },
+        {
+          "path": "audio/module5.mp3",
+          "size": 955916,
+          "sha": "1b543d68b0ed851a7c87738195e2729790dc8d20"
+        },
+        {
+          "path": "audio/module6.mp3",
+          "size": 991443,
+          "sha": "a2b24d4ebeb4217926271fc4bed2e73e0159bf24"
+        },
+        {
+          "path": "audio/module7.mp3",
+          "size": 938780,
+          "sha": "cb50d6786ac0c65a87bd68d22f77ba8e8a8d197e"
+        },
+        {
+          "path": "audio/module8.mp3",
+          "size": 888207,
+          "sha": "1d01a52cf846c3dd144653946f1336fcb43c98d5"
+        },
+        {
+          "path": "audio/slow.mp3",
+          "size": 1268550,
+          "sha": "9466f375e4059a97518c81652af76359ddabfbfd"
+        },
+        {
+          "path": "audio/welcome.mp3",
+          "size": 891133,
+          "sha": "e0cdc5e24ab575388c73f8530da29b731e043b65"
+        }
+      ],
+      "signals": [
+        {
+          "path": ".github/workflows/audit-audio-ecosystem.yml",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/generate-audio.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/remove-legacy-tts.yml",
+          "signals": [
+            "speech_synthesis",
+            "new_audio",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "AUDITORIA-UX-28-PONTOS.md",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "js/audio-premium.js",
+          "signals": [
+            "new_audio",
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "README.md",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "scripts/audit_audio_ecosystem.py",
+          "signals": [
+            "speech_synthesis",
+            "audio_tag",
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "scripts/generate-audio.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        }
+      ]
+    },
+    {
+      "repo": "tab-bateria-integrada",
+      "html_url": "https://github.com/ricmurtapsicologia/tab-bateria-integrada",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    },
+    {
+      "repo": "TriagemRiscoSuicidio",
+      "html_url": "https://github.com/ricmurtapsicologia/TriagemRiscoSuicidio",
+      "default_branch": "main",
+      "tree_truncated": false,
+      "audio_files": [],
+      "signals": []
+    }
+  ]
+}
