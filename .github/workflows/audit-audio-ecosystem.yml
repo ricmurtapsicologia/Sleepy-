@@ -1,0 +1,55 @@
+name: Auditar audio do ecossistema
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_audio_ecosystem.py'
+      - '.github/workflows/audit-audio-ecosystem.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: audit-audio-ecosystem
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Percorrer repositorios publicos ativos
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/audit_audio_ecosystem.py
+      - name: Validar relatorio
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('AUDIO_ECOSYSTEM_AUDIT.json')
+          assert p.exists()
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d['repository_count']>0
+          assert Path('AUDIO_ECOSYSTEM_AUDIT.md').exists()
+          print(f"Auditados {d['repository_count']} repos; {d['candidate_repository_count']} candidatos.")
+          PY
+      - name: Commitar auditoria
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add AUDIO_ECOSYSTEM_AUDIT.json AUDIO_ECOSYSTEM_AUDIT.md
+          if git diff --cached --quiet; then
+            echo "Auditoria sem alterações"
+            exit 0
+          fi
+          git commit -m "audit: mapear audio e TTS do ecossistema"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
