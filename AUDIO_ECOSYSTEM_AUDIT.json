@@ -4,6 +4,10 @@
   "generated_by": "scripts/audit_audio_ecosystem.py",
   "repository_count": 43,
   "candidate_repository_count": 7,
+  "runtime_speech_synthesis_repository_count": 1,
+  "runtime_speech_synthesis_repositories": [
+    "clinicadosono"
+  ],
   "repositories": [
     {
       "repo": "altaperformance",
@@ -17,7 +21,11 @@
           "sha": "5ae86273e3e5a784ee4738606e4fdc1754dd092a"
         }
       ],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "bateria.narcisismo",
@@ -25,7 +33,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "cats-2025-4bbm-jf",
@@ -33,7 +45,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "cats-2025-4bbm-jf-login",
@@ -41,7 +57,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "CATS.pousoalegre",
@@ -49,7 +69,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "clinicadosono",
@@ -59,12 +83,82 @@
       "audio_files": [],
       "signals": [
         {
+          "path": ".github/workflows/generate-chapter-audio-n2.yml",
+          "signals": [
+            "speech_synthesis",
+            "new_audio",
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "audio-freeze-20260825.json",
+          "signals": [
+            "speech_synthesis"
+          ]
+        },
+        {
+          "path": "index.html",
+          "signals": [
+            "speech_synthesis"
+          ]
+        },
+        {
+          "path": "scripts/generate_chapter_audio_n2.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/patch_audio_player_n2.py",
+          "signals": [
+            "speech_synthesis",
+            "new_audio",
+            "audio_extension_ref"
+          ]
+        }
+      ],
+      "runtime_signals": [
+        {
           "path": "index.html",
           "signals": [
             "speech_synthesis"
           ]
         }
-      ]
+      ],
+      "tooling_signals": [
+        {
+          "path": ".github/workflows/generate-chapter-audio-n2.yml",
+          "signals": [
+            "speech_synthesis",
+            "new_audio",
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "audio-freeze-20260825.json",
+          "signals": [
+            "speech_synthesis"
+          ]
+        },
+        {
+          "path": "scripts/generate_chapter_audio_n2.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/patch_audio_player_n2.py",
+          "signals": [
+            "speech_synthesis",
+            "new_audio",
+            "audio_extension_ref"
+          ]
+        }
+      ],
+      "runtime_speech_synthesis_count": 1,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Curso-ATS",
@@ -72,7 +166,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Curso-ATS-Login",
@@ -80,7 +178,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "efetivoDAI2",
@@ -88,7 +190,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "emocao360",
@@ -96,7 +202,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Escala-de-Co-Depenpencia-Emocional",
@@ -104,7 +214,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Escala-de-Necessidades-Emocionais",
@@ -112,7 +226,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Escala-de-Tomada-de-Decisao",
@@ -120,7 +238,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Guia-de-Apoio-a-Saude-Mental",
@@ -128,7 +250,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "hashimotim",
@@ -136,7 +262,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "ICAPS",
@@ -144,7 +274,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Inicio-de-Jornada-Terapeutica",
@@ -152,7 +286,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Inventario-de-Tracos-Borderline",
@@ -160,7 +298,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "JardimdoAutoCuidado",
@@ -168,7 +310,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Luto",
@@ -176,7 +322,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "ManualParticipanteII",
@@ -184,7 +334,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "nova.resolucao.dai",
@@ -192,7 +346,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "OrientProfissional",
@@ -200,7 +358,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "painel.indicadores.saude.cbmmg",
@@ -208,7 +370,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Pilulas-de-Reflexao",
@@ -355,12 +521,6 @@
           ]
         },
         {
-          "path": "data/pilulas.json",
-          "signals": [
-            "audio_extension_ref"
-          ]
-        },
-        {
           "path": "index.html",
           "signals": [
             "audio_tag"
@@ -397,7 +557,96 @@
             "tts_term"
           ]
         }
-      ]
+      ],
+      "runtime_signals": [
+        {
+          "path": "index.html",
+          "signals": [
+            "audio_tag"
+          ]
+        }
+      ],
+      "tooling_signals": [
+        {
+          "path": ".github/workflows/audio-kokoro-production-main.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/audio-v3.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/enforce-ten-audios.yml",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": ".github/workflows/generate-audio-n2.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "audio-freeze-20260825.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "audio/n2/audio-spec.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "data/audio-v3.json",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "package.json",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "README.md",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "scripts/audio-build.mjs",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "scripts/generate_audio_n2.py",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "scripts/render-tts-openai.mjs",
+          "signals": [
+            "tts_term"
+          ]
+        }
+      ],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 1
     },
     {
       "repo": "plano-seguranca-abordadores",
@@ -405,7 +654,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "planosegurancaemocional",
@@ -413,7 +666,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "plataforma.terapeutica",
@@ -421,7 +678,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Podcast-ATS-CBMMG",
@@ -1057,7 +1318,99 @@
             "audio_extension_ref"
           ]
         }
-      ]
+      ],
+      "runtime_signals": [
+        {
+          "path": "app.js",
+          "signals": [
+            "audio_tag",
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "psp.js",
+          "signals": [
+            "audio_tag"
+          ]
+        }
+      ],
+      "tooling_signals": [
+        {
+          "path": ".github/workflows/generate-psp-audio.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/remaster-series1-n2.yml",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/remaster-series2-n2.yml",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "assets/audio/serie-1/quality.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "assets/audio/serie-2/quality-s3-parity.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "assets/audio/serie-2/quality.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "PYTHON_LAYER.md",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "README_SERIE3_AUDIO.md",
+          "signals": [
+            "audio_tag"
+          ]
+        },
+        {
+          "path": "scripts/audio_pipeline.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/generate_psp_audio.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/remaster_series1_n2.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/remaster_series2_n2.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        }
+      ],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 2
     },
     {
       "repo": "ProgetoSegundaChance",
@@ -1065,7 +1418,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Projeto-Segunda-Chance",
@@ -1073,7 +1430,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "provaATScefs",
@@ -1081,7 +1442,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Rastreio-de-Impulsividade",
@@ -1089,7 +1454,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "rastreio.de.esquemas",
@@ -1097,7 +1466,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "Rastreioclinico",
@@ -1105,7 +1478,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "rastreiomodosesquematicos",
@@ -1113,7 +1490,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "rastreioTDAH",
@@ -1121,7 +1502,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "regulacao-polivagal.",
@@ -1433,7 +1818,45 @@
             "audio_extension_ref"
           ]
         }
-      ]
+      ],
+      "runtime_signals": [
+        {
+          "path": "audio-n2.js",
+          "signals": [
+            "new_audio"
+          ]
+        }
+      ],
+      "tooling_signals": [
+        {
+          "path": ".github/workflows/generate-audio-n2.yml",
+          "signals": [
+            "speech_synthesis",
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "audio-freeze-20260825.json",
+          "signals": [
+            "speech_synthesis"
+          ]
+        },
+        {
+          "path": "audio/n2/manifest.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/generate_audio_n2.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        }
+      ],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 1
     },
     {
       "repo": "revisaoIto30",
@@ -1441,7 +1864,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "RPD",
@@ -1518,7 +1945,70 @@
             "audio_extension_ref"
           ]
         }
-      ]
+      ],
+      "runtime_signals": [
+        {
+          "path": "_includes/v210_intro.html",
+          "signals": [
+            "audio_tag",
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "assets/js/audio-n2.js",
+          "signals": [
+            "audio_tag"
+          ]
+        },
+        {
+          "path": "index.html",
+          "signals": [
+            "audio_tag",
+            "audio_extension_ref"
+          ]
+        }
+      ],
+      "tooling_signals": [
+        {
+          "path": ".github/workflows/remaster-audio-n2.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "audio-freeze-20260825.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "audio/audio-spec.json",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "README.md",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "scripts/remaster_rpd_n2.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        },
+        {
+          "path": "tests/rpd.spec.js",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        }
+      ],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 3
     },
     {
       "repo": "sono-em-dia-",
@@ -1625,6 +2115,19 @@
           ]
         },
         {
+          "path": "AUDIO_ECOSYSTEM_AUDIT.json",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "AUDIO_ECOSYSTEM_AUDIT.md",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
           "path": "AUDITORIA-UX-28-PONTOS.md",
           "signals": [
             "tts_term"
@@ -1658,7 +2161,81 @@
             "audio_extension_ref"
           ]
         }
-      ]
+      ],
+      "runtime_signals": [
+        {
+          "path": "js/audio-premium.js",
+          "signals": [
+            "new_audio",
+            "audio_extension_ref"
+          ]
+        }
+      ],
+      "tooling_signals": [
+        {
+          "path": ".github/workflows/audit-audio-ecosystem.yml",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/generate-audio.yml",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": ".github/workflows/remove-legacy-tts.yml",
+          "signals": [
+            "speech_synthesis",
+            "new_audio",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "AUDIO_ECOSYSTEM_AUDIT.json",
+          "signals": [
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "AUDIO_ECOSYSTEM_AUDIT.md",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "AUDITORIA-UX-28-PONTOS.md",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "README.md",
+          "signals": [
+            "tts_term"
+          ]
+        },
+        {
+          "path": "scripts/audit_audio_ecosystem.py",
+          "signals": [
+            "speech_synthesis",
+            "audio_tag",
+            "audio_extension_ref",
+            "tts_term"
+          ]
+        },
+        {
+          "path": "scripts/generate-audio.py",
+          "signals": [
+            "audio_extension_ref"
+          ]
+        }
+      ],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 1
     },
     {
       "repo": "tab-bateria-integrada",
@@ -1666,7 +2243,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     },
     {
       "repo": "TriagemRiscoSuicidio",
@@ -1674,7 +2255,11 @@
       "default_branch": "main",
       "tree_truncated": false,
       "audio_files": [],
-      "signals": []
+      "signals": [],
+      "runtime_signals": [],
+      "tooling_signals": [],
+      "runtime_speech_synthesis_count": 0,
+      "runtime_audio_reference_count": 0
     }
   ]
 }

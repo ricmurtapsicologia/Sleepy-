@@ -1,18 +1,20 @@
 # Auditoria global de áudio
 
 - Repositórios públicos ativos auditados: 43
-- Repositórios com arquivos de áudio ou sinais de player/TTS: 7
+- Repositórios com áudio binário ou referência pública de áudio/TTS: 7
+- Repositórios com SpeechSynthesis no runtime público: 1
 - Método: árvore Git recursiva + inspeção direta dos arquivos-fonte; não depende da busca de código do GitHub.
+- Sinais em workflows, scripts, testes e documentação são classificados como tooling e não como runtime público.
 
-| Repositório | Arquivos de áudio | Sinais em código/conteúdo |
-|---|---:|---:|
-| altaperformance | 1 | 0 |
-| clinicadosono | 0 | 1 |
-| Pilulas-de-Reflexao | 18 | 14 |
-| Podcast-ATS-CBMMG | 108 | 14 |
-| regulacao-polivagal. | 54 | 5 |
-| RPD | 2 | 9 |
-| sono-em-dia- | 15 | 8 |
+| Repositório | Arquivos de áudio | Referências públicas | SpeechSynthesis público |
+|---|---:|---:|---:|
+| altaperformance | 1 | 0 | 0 |
+| clinicadosono | 0 | 0 | 1 |
+| Pilulas-de-Reflexao | 18 | 1 | 0 |
+| Podcast-ATS-CBMMG | 108 | 2 | 0 |
+| regulacao-polivagal. | 54 | 1 | 0 |
+| RPD | 2 | 3 | 0 |
+| sono-em-dia- | 15 | 1 | 0 |
 
 ## Detalhes
 
@@ -23,8 +25,9 @@ Arquivos de áudio:
 
 ### clinicadosono
 
-Sinais em arquivos-fonte:
+Sinais no runtime público:
 - `index.html` — speech_synthesis
+Tooling/documentação com termos relacionados: 4 arquivo(s).
 
 ### Pilulas-de-Reflexao
 
@@ -47,21 +50,9 @@ Arquivos de áudio:
 - `PODCAST 005 SUPERANDO INSEGURANÇA.mp3`
 - `PODCAST 006 FINJA ATÉ SER VERDADE.mp3`
 - `PODCAST 007 MEDITAÇÃO GUIADA.mp3`
-Sinais em arquivos-fonte:
-- `.github/workflows/audio-kokoro-production-main.yml` — audio_extension_ref, tts_term
-- `.github/workflows/audio-v3.yml` — audio_extension_ref, tts_term
-- `.github/workflows/enforce-ten-audios.yml` — audio_extension_ref
-- `.github/workflows/generate-audio-n2.yml` — audio_extension_ref, tts_term
-- `audio-freeze-20260825.json` — audio_extension_ref
-- `audio/n2/audio-spec.json` — audio_extension_ref
-- `data/audio-v3.json` — audio_extension_ref, tts_term
-- `data/pilulas.json` — audio_extension_ref
+Sinais no runtime público:
 - `index.html` — audio_tag
-- `package.json` — tts_term
-- `README.md` — tts_term
-- `scripts/audio-build.mjs` — tts_term
-- `scripts/generate_audio_n2.py` — audio_extension_ref, tts_term
-- `scripts/render-tts-openai.mjs` — tts_term
+Tooling/documentação com termos relacionados: 12 arquivo(s).
 
 ### Podcast-ATS-CBMMG
 
@@ -174,21 +165,10 @@ Arquivos de áudio:
 - `assets/audio/serie-3/psp-08.mp3`
 - `assets/audio/serie-3/psp-09.mp3`
 - `assets/audio/serie-3/psp-10.mp3`
-Sinais em arquivos-fonte:
-- `.github/workflows/generate-psp-audio.yml` — audio_extension_ref, tts_term
-- `.github/workflows/remaster-series1-n2.yml` — tts_term
-- `.github/workflows/remaster-series2-n2.yml` — tts_term
+Sinais no runtime público:
 - `app.js` — audio_tag, audio_extension_ref
-- `assets/audio/serie-1/quality.json` — audio_extension_ref
-- `assets/audio/serie-2/quality-s3-parity.json` — audio_extension_ref
-- `assets/audio/serie-2/quality.json` — audio_extension_ref
 - `psp.js` — audio_tag
-- `PYTHON_LAYER.md` — audio_extension_ref
-- `README_SERIE3_AUDIO.md` — audio_tag
-- `scripts/audio_pipeline.py` — audio_extension_ref
-- `scripts/generate_psp_audio.py` — audio_extension_ref
-- `scripts/remaster_series1_n2.py` — audio_extension_ref
-- `scripts/remaster_series2_n2.py` — audio_extension_ref
+Tooling/documentação com termos relacionados: 12 arquivo(s).
 
 ### regulacao-polivagal.
 
@@ -247,28 +227,20 @@ Arquivos de áudio:
 - `audio/n2/valores-02.mp3`
 - `audio/n2/valores-03.mp3`
 - `audio/n2/valores-04.mp3`
-Sinais em arquivos-fonte:
-- `.github/workflows/generate-audio-n2.yml` — speech_synthesis, audio_extension_ref, tts_term
-- `audio-freeze-20260825.json` — speech_synthesis
+Sinais no runtime público:
 - `audio-n2.js` — new_audio
-- `audio/n2/manifest.json` — audio_extension_ref
-- `scripts/generate_audio_n2.py` — audio_extension_ref
+Tooling/documentação com termos relacionados: 4 arquivo(s).
 
 ### RPD
 
 Arquivos de áudio:
 - `audio/rpd1-n2.mp3`
 - `RPD1.mp3`
-Sinais em arquivos-fonte:
-- `.github/workflows/remaster-audio-n2.yml` — audio_extension_ref, tts_term
+Sinais no runtime público:
 - `_includes/v210_intro.html` — audio_tag, audio_extension_ref
 - `assets/js/audio-n2.js` — audio_tag
-- `audio-freeze-20260825.json` — audio_extension_ref
-- `audio/audio-spec.json` — audio_extension_ref
 - `index.html` — audio_tag, audio_extension_ref
-- `README.md` — audio_extension_ref
-- `scripts/remaster_rpd_n2.py` — audio_extension_ref
-- `tests/rpd.spec.js` — audio_extension_ref
+Tooling/documentação com termos relacionados: 6 arquivo(s).
 
 ### sono-em-dia-
 
@@ -288,13 +260,7 @@ Arquivos de áudio:
 - `audio/module8.mp3`
 - `audio/slow.mp3`
 - `audio/welcome.mp3`
-Sinais em arquivos-fonte:
-- `.github/workflows/audit-audio-ecosystem.yml` — tts_term
-- `.github/workflows/generate-audio.yml` — audio_extension_ref, tts_term
-- `.github/workflows/remove-legacy-tts.yml` — speech_synthesis, new_audio, tts_term
-- `AUDITORIA-UX-28-PONTOS.md` — tts_term
+Sinais no runtime público:
 - `js/audio-premium.js` — new_audio, audio_extension_ref
-- `README.md` — tts_term
-- `scripts/audit_audio_ecosystem.py` — speech_synthesis, audio_tag, audio_extension_ref, tts_term
-- `scripts/generate-audio.py` — audio_extension_ref
+Tooling/documentação com termos relacionados: 9 arquivo(s).
 
