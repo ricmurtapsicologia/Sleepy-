@@ -165,21 +165,14 @@ function renderTools(){
   bindAudioButtons($('#audioLibrary'));
 }
 
-function bindAudioButtons(root=document){$$('[data-audio]',root).forEach(b=>{b.onclick=()=>openAudio(b.dataset.audio)})}
-function openAudio(id){const a=C.audios[id];if(!a)return;stopAudio();activeAudio=id;$('#audioExperience').innerHTML=`<button class="back-link" type="button" data-nav="${currentView==='modulo'?'modulo':'ferramentas'}">← Voltar</button><div class="audio-stage"><div><span class="eyebrow">${esc(a.category)}</span><h1 id="audioTitle">${esc(a.title)}</h1><p>${a.kind==='calm'?'Use este áudio apenas para diminuir um pouco a ativação. Você não precisa fazê-lo “funcionar”.':'Uma explicação curta, em linguagem falada e sem transformar sono em desempenho.'}</p></div><div><div class="audio-controls"><button id="audioPlayBtn" type="button" aria-label="Reproduzir ou pausar">▶</button><div><div class="audio-progress"><span id="audioProgressBar"></span></div></div><span class="audio-time" id="audioTime">${esc(a.duration)}</span></div></div></div><details class="transcript"><summary>Ver transcrição</summary><p>${esc(a.script)}</p></details><p class="privacy-note">A versão atual usa a voz de alta qualidade disponível no próprio dispositivo. A naturalidade varia conforme navegador e sistema operacional.</p>`;
-  $('#audioPlayBtn').addEventListener('click',()=>{if(speechSynthesis.speaking&&!speechSynthesis.paused){speechSynthesis.pause();$('#audioPlayBtn').textContent='▶'}else if(speechSynthesis.paused){speechSynthesis.resume();$('#audioPlayBtn').textContent='❚❚'}else startTTS(id)});nav('audio');
+function bindAudioButtons(root=document){
+  $$('[data-audio]',root).forEach(b=>{b.onclick=()=>openAudio(b.dataset.audio)})
 }
-
-function splitForSpeech(text){return text.match(/[^.!?]+[.!?]+|[^.!?]+$/g)?.map(s=>s.trim()).filter(Boolean)||[text]}
-function selectVoice(){const voices=speechSynthesis.getVoices();const pt=voices.filter(v=>/^pt(-|_)BR/i.test(v.lang)||/^pt/i.test(v.lang));const preferred=['Francisca','Luciana','Thalita','Antônio','Antonio','Google português do Brasil','Microsoft Maria','Microsoft Francisca'];for(const p of preferred){const v=pt.find(x=>x.name.toLowerCase().includes(p.toLowerCase()));if(v)return v}return pt.find(v=>v.localService)||pt[0]||voices[0]}
-function startTTS(id){
-  stopAudio();activeAudio=id;const a=C.audios[id];if(!('speechSynthesis'in window)){toast('Seu navegador não oferece reprodução de voz. Use a transcrição.');return}
-  const parts=splitForSpeech(a.script);utteranceQueue=[...parts];audioStart=Date.now();audioElapsed=0;$('#audioPlayBtn').textContent='❚❚';speakNext(a);
-  clearInterval(audioTimer);audioTimer=setInterval(()=>{if(!speechSynthesis.speaking||speechSynthesis.paused)return;audioElapsed=(Date.now()-audioStart)/1000;const est=Math.max(60,(a.script.split(/\s+/).length/(a.kind==='calm'?112:145))*60);$('#audioProgressBar').style.width=`${Math.min(96,(audioElapsed/est)*100)}%`},500)
+function openAudio(id){
+  if(window.SONO_AUDIO?.open)return window.SONO_AUDIO.open(id);
+  toast('Áudio temporariamente indisponível. Use a transcrição.');
 }
-function speakNext(a){if(!utteranceQueue.length){finishAudio();return}const text=utteranceQueue.shift();const u=new SpeechSynthesisUtterance(text);const voice=selectVoice();if(voice)u.voice=voice;u.lang='pt-BR';u.rate=a.kind==='calm'?0.82:0.94;u.pitch=a.kind==='calm'?0.92:0.96;u.volume=0.92;u.onend=()=>{if(activeAudio){setTimeout(()=>speakNext(a),a.kind==='calm'?330:150)}};u.onerror=()=>finishAudio();speechSynthesis.speak(u)}
-function finishAudio(){clearInterval(audioTimer);audioTimer=null;activeAudio=null;if($('#audioPlayBtn'))$('#audioPlayBtn').textContent='▶';if($('#audioProgressBar'))$('#audioProgressBar').style.width='100%'}
-function stopAudio(){if('speechSynthesis'in window)speechSynthesis.cancel();clearInterval(audioTimer);audioTimer=null;activeAudio=null;utteranceQueue=[]}
+function stopAudio(){window.SONO_AUDIO?.stop?.()}
 
 function initTheme(){
   document.documentElement.dataset.theme=state.theme||'auto';
@@ -193,8 +186,6 @@ function initPWA(){if('serviceWorker'in navigator)window.addEventListener('load'
 
 function boot(){
   initTheme();initNav();initStart();initAssessment();initDiary();initProgress();initPlan();initShare();renderTools();renderAssessment();renderHome();renderModules();bindAudioButtons();initPWA();
-  speechSynthesis?.getVoices?.();
-  if('speechSynthesis'in window)speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
 }
 document.addEventListener('DOMContentLoaded',boot);
 })();

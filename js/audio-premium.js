@@ -1,5 +1,7 @@
 (()=>{
 'use strict';
+if(window.__SONO_AUDIO_PREMIUM__)return;
+window.__SONO_AUDIO_PREMIUM__=true;
 const C=window.SONO_CONTENT;
 if(!C)return;
 
