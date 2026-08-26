@@ -1,0 +1,90 @@
+name: Remover TTS legado do Sono em Dia
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'js/app.js'
+      - 'js/audio-premium.js'
+      - '.github/workflows/remove-legacy-tts.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sono-remove-legacy-tts
+  cancel-in-progress: true
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Remover SpeechSynthesis e tornar player MP3 idempotente
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p=Path('js/app.js')
+          s=p.read_text(encoding='utf-8')
+          replacement='''function bindAudioButtons(root=document){
+            $$('[data-audio]',root).forEach(b=>{b.onclick=()=>openAudio(b.dataset.audio)})
+          }
+          function openAudio(id){
+            if(window.SONO_AUDIO?.open)return window.SONO_AUDIO.open(id);
+            toast('Áudio temporariamente indisponível. Use a transcrição.');
+          }
+          function stopAudio(){window.SONO_AUDIO?.stop?.()}
+
+          '''
+          s,n=re.subn(
+            r"function bindAudioButtons\(root=document\)\{.*?function initTheme\(\)\{",
+            replacement+'function initTheme(){',
+            s,
+            count=1,
+            flags=re.S,
+          )
+          if n!=1:
+            raise SystemExit('Bloco legado de áudio não localizado em js/app.js')
+          s=re.sub(r"\n\s*speechSynthesis\?\.getVoices\?\.\(\);\s*\n\s*if\('speechSynthesis'in window\)speechSynthesis\.onvoiceschanged=.*?;",'',s,count=1)
+          forbidden=('speechSynthesis','SpeechSynthesisUtterance')
+          if any(x in s for x in forbidden):
+            raise SystemExit('Ainda existe SpeechSynthesis em js/app.js')
+          p.write_text(s,encoding='utf-8')
+
+          a=Path('js/audio-premium.js')
+          t=a.read_text(encoding='utf-8')
+          guard="if(window.__SONO_AUDIO_PREMIUM__)return;\nwindow.__SONO_AUDIO_PREMIUM__=true;\n"
+          if '__SONO_AUDIO_PREMIUM__' not in t:
+            t=t.replace("'use strict';\n", "'use strict';\n"+guard,1)
+          a.write_text(t,encoding='utf-8')
+          PY
+      - name: Validar arquitetura de áudio
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          app=Path('js/app.js').read_text(encoding='utf-8')
+          premium=Path('js/audio-premium.js').read_text(encoding='utf-8')
+          assert 'speechSynthesis' not in app
+          assert 'SpeechSynthesisUtterance' not in app
+          assert 'window.SONO_AUDIO' in app
+          assert '__SONO_AUDIO_PREMIUM__' in premium
+          assert 'new Audio(' in premium
+          print('Sono em Dia validado: MP3-only, sem TTS do dispositivo.')
+          PY
+      - name: Commitar limpeza
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/app.js js/audio-premium.js
+          if git diff --cached --quiet; then
+            echo "Arquitetura já está limpa"
+            exit 0
+          fi
+          git commit -m "fix: remover TTS legado e manter audio MP3-only"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
