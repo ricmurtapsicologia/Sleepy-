@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import json
 import os
 import re
@@ -11,173 +12,118 @@ from pathlib import Path
 import edge_tts
 from pydub import AudioSegment, effects
 
-MANIFEST = Path(sys.argv[1] if len(sys.argv) > 1 else '/tmp/sono-audios.json')
-OUT = Path(sys.argv[2] if len(sys.argv) > 2 else 'audio')
-TMP = Path('.tmp_sono_audio')
-VOICE = os.environ.get('SONO_VOICE', 'pt-BR-AntonioNeural')
+MANIFEST=Path(sys.argv[1] if len(sys.argv)>1 else '/tmp/sono-audios.json')
+OUT=Path(sys.argv[2] if len(sys.argv)>2 else 'audio')
+TMP=Path('.tmp_sono_audio_n3')
+VOICE=os.environ.get('SONO_VOICE','pt-BR-AntonioNeural')
+VERSION='n3-20260831'
+OPENING_SILENCE_MS=150
+ENDING_SILENCE_MS=280
+TARGET_DBFS=-18.0
+MAX_CONCURRENT_SYNTH=4
+SYNTH_TIMEOUT_SECONDS=55
 
-# Perfil sonoro alinhado ao padrão N2 de “Girando a Ampulheta da Vida”.
-OPENING_SILENCE_MS = 130
-ENDING_SILENCE_MS = 240
-TARGET_DBFS = -18.0
-MAX_TURN_CHARS = 560
-SYNTH_TIMEOUT_SECONDS = 55
-MAX_CONCURRENT_SYNTH = 4
+OUT.mkdir(parents=True,exist_ok=True);TMP.mkdir(parents=True,exist_ok=True)
 
-OUT.mkdir(parents=True, exist_ok=True)
-TMP.mkdir(parents=True, exist_ok=True)
-
-
-def normalize_text(text: str) -> str:
-    return re.sub(r'\s+', ' ', text or '').strip()
+SOFT={'mas','porém','porem','contudo','entretanto','porque','quando','enquanto','então','entao','assim','agora','portanto','se','como','além','alem','ainda','depois','antes','embora'}
+INSTRUCTIONS=('observe','imagine','pense','respire','inspire','expire','exale','perceba','note','sinta','coloque','apoie','mantenha','deixe','permita','guarde','faça','faca','tente','olhe','escute','volte')
+REFLECTIVE=('talvez','por enquanto','agora','às vezes','as vezes','vale lembrar','repare','considere','uma possibilidade','isso pode')
+CONCLUSION=('em resumo','para concluir','por fim','em síntese','em sintese','o ponto principal','leve com você','leve com voce')
 
 
-def split_turns(text: str) -> list[str]:
-    text = normalize_text(text)
-    sentences = re.findall(r'[^.!?]+[.!?]+|[^.!?]+$', text)
-    turns: list[str] = []
-    current = ''
-    for sentence in (normalize_text(s) for s in sentences):
-        if not sentence:
-            continue
-        candidate = f'{current} {sentence}'.strip()
-        if current and len(candidate) > MAX_TURN_CHARS:
-            turns.append(current)
-            current = sentence
-        else:
-            current = candidate
-    if current:
-        turns.append(current)
-    return turns or [text]
+def norm(text:str)->str:return re.sub(r'\s+',' ',text or '').strip()
 
+def tokens(text:str):return re.findall(r'[\wÀ-ÿ]+',text.lower(),flags=re.UNICODE)
 
-def prosody(kind: str, text: str, index: int) -> tuple[str, str, int]:
-    calm = kind == 'calm'
-    rate = -9 if calm else -4
-    pitch = -2 if calm else -1
-    normalized = text.strip().lower()
+def stable(text:str,low:int,high:int,salt:str)->int:
+    h=hashlib.sha256((salt+'|'+norm(text)).encode()).digest();u=int.from_bytes(h[:4],'big')/0xffffffff
+    return low+int(round(u*(high-low)))
 
-    if text.rstrip().endswith('?'):
-        rate += 2
-        pitch += 2
-    if normalized.startswith(('guarde', 'em resumo', 'pense', 'imagine', 'observe', 'por enquanto', 'agora')):
-        rate -= 2
+def intent(text:str)->str:
+    t=norm(text);low=t.lower()
+    if t.endswith('?'):return 'question'
+    if low.startswith(INSTRUCTIONS):return 'instruction'
+    if low.startswith(REFLECTIVE):return 'reflective'
+    if low.startswith(CONCLUSION):return 'conclusion'
+    if t.endswith('!'):return 'emphasis'
+    return 'explain'
 
-    rate += (-1, 0, 1, 0)[index % 4]
-    rate = max(-13 if calm else -10, min(2 if calm else 4, rate))
-    pitch = max(-4, min(4, pitch))
+def breath_units(text:str)->list[str]:
+    text=norm(text);out=[]
+    for sentence in [s.strip() for s in re.split(r'(?<=[.!?…])\s+',text) if s.strip()]:
+        words=sentence.split()
+        if len(words)<=20:out.append(sentence);continue
+        start=0
+        while len(words)-start>20:
+            lo=start+9;hi=min(start+20,len(words));target=min(start+14,hi)
+            candidates=[]
+            for i in range(lo,hi):
+                w=re.sub(r'^[^\wÀ-ÿ]+|[^\wÀ-ÿ]+$','',words[i].lower())
+                if w in SOFT:candidates.append(i)
+            cut=min(candidates,key=lambda i:abs(i-target)) if candidates else target
+            unit=' '.join(words[start:cut]).strip()
+            if unit and not unit.endswith((',', ';', ':', '.', '?', '!', '…')):unit+=','
+            out.append(unit);start=cut
+        if start<len(words):out.append(' '.join(words[start:]).strip())
+    if tokens(' '.join(out))!=tokens(text):raise RuntimeError('Gate lexical N3 falhou')
+    return out or [text]
 
-    if text.rstrip().endswith('?'):
-        pause = 620 if calm else 560
-    elif text.rstrip().endswith('!'):
-        pause = 580 if calm else 500
+def prosody(kind:str,text:str):
+    calm=kind=='calm';i=intent(text)
+    rate=-9 if calm else -4;pitch=-2 if calm else -1
+    rate += {'explain':0,'question':1,'instruction':-3,'reflective':-3,'conclusion':-2,'emphasis':1}[i]
+    pitch += {'explain':0,'question':2,'instruction':-1,'reflective':-1,'conclusion':-1,'emphasis':1}[i]
+    rate+=stable(text,-1,1,'rate');pitch+=stable(text,-1,1,'pitch')
+    if calm:
+        ranges={'explain':(650,1000),'question':(850,1400),'instruction':(1300,2400),'reflective':(1100,2000),'conclusion':(900,1400),'emphasis':(650,950)}
     else:
-        pause = 620 if calm else 520
+        ranges={'explain':(390,650),'question':(480,760),'instruction':(750,1200),'reflective':(720,1150),'conclusion':(650,1050),'emphasis':(390,650)}
+    lo,hi=ranges[i];pause=stable(text,lo,hi,'pause')
+    return i,f'{max(-14,min(5,rate)):+d}%',f'{max(-5,min(5,pitch)):+d}Hz',pause
 
-    return f'{rate:+d}%', f'{pitch:+d}Hz', pause
-
-
-async def synthesize(text: str, rate: str, pitch: str, output: Path, semaphore: asyncio.Semaphore):
-    async with semaphore:
-        for attempt in range(1, 4):
+async def synth(text,rate,pitch,path,sem):
+    async with sem:
+        for attempt in range(1,4):
             try:
-                communicate = edge_tts.Communicate(
-                    text=text,
-                    voice=VOICE,
-                    rate=rate,
-                    pitch=pitch,
-                    volume='+0%',
-                )
-                await asyncio.wait_for(communicate.save(str(output)), timeout=SYNTH_TIMEOUT_SECONDS)
-                return
+                c=edge_tts.Communicate(text=text,voice=VOICE,rate=rate,pitch=pitch,volume='+0%')
+                await asyncio.wait_for(c.save(str(path)),timeout=SYNTH_TIMEOUT_SECONDS);return
             except Exception:
-                if attempt == 3:
-                    raise
-                await asyncio.sleep(0.9 * attempt)
+                if attempt==3:raise
+                await asyncio.sleep(.9*attempt)
 
-
-async def render_one(audio_id: str, data: dict, semaphore: asyncio.Semaphore):
-    text = normalize_text(data.get('script') or '')
-    if not text:
-        return None
-
-    kind = data.get('kind', 'explain')
-    turns = split_turns(text)
-    work = TMP / audio_id
-    work.mkdir(parents=True, exist_ok=True)
-
-    tasks = []
-    sequence: list[tuple[Path, int]] = []
-    for idx, turn in enumerate(turns):
-        rate, pitch, pause_ms = prosody(kind, turn, idx)
-        part = work / f'{idx:03d}.mp3'
-        sequence.append((part, 0 if idx == len(turns) - 1 else pause_ms))
-        tasks.append(synthesize(turn, rate, pitch, part, semaphore))
-
+async def render_one(audio_id:str,data:dict,sem):
+    text=norm(data.get('script') or '')
+    if not text:return None
+    kind=data.get('kind','explain');turns=breath_units(text);work=TMP/audio_id;work.mkdir(parents=True,exist_ok=True)
+    tasks=[];seq=[];intents=[]
+    for idx,turn in enumerate(turns):
+        name,rate,pitch,pause=prosody(kind,turn);part=work/f'{idx:03d}.mp3'
+        seq.append((part,0 if idx==len(turns)-1 else pause));tasks.append(synth(turn,rate,pitch,part,sem));intents.append(name)
     await asyncio.gather(*tasks)
-
-    merged = AudioSegment.silent(duration=OPENING_SILENCE_MS)
-    for part, pause_ms in sequence:
-        merged += AudioSegment.from_file(part, format='mp3')
-        if pause_ms:
-            merged += AudioSegment.silent(duration=pause_ms)
-    merged += AudioSegment.silent(duration=ENDING_SILENCE_MS)
-
-    merged = effects.compress_dynamic_range(
-        merged,
-        threshold=-20.0,
-        ratio=2.0,
-        attack=8.0,
-        release=70.0,
-    )
-    if merged.dBFS != float('-inf'):
-        merged = merged.apply_gain(TARGET_DBFS - merged.dBFS)
-    if merged.max_dBFS > -1.2:
-        merged = merged.apply_gain(-1.2 - merged.max_dBFS)
-
-    target = OUT / f'{audio_id}.mp3'
-    merged.export(
-        target,
-        format='mp3',
-        bitrate='128k',
-        parameters=['-ac', '1', '-ar', '44100'],
-    )
-    print(f'gerado: {target} ({len(merged) / 1000:.1f}s)')
-    return audio_id, round(len(merged) / 1000, 1)
-
+    audio=AudioSegment.silent(duration=OPENING_SILENCE_MS)
+    for part,pause in seq:
+        audio+=AudioSegment.from_file(part,format='mp3')
+        if pause:audio+=AudioSegment.silent(duration=pause)
+    audio+=AudioSegment.silent(duration=ENDING_SILENCE_MS)
+    audio=effects.compress_dynamic_range(audio,threshold=-20.0,ratio=2.0,attack=8.0,release=70.0)
+    if audio.dBFS!=float('-inf'):audio=audio.apply_gain(TARGET_DBFS-audio.dBFS)
+    if audio.max_dBFS>-1.2:audio=audio.apply_gain(-1.2-audio.max_dBFS)
+    target=OUT/f'{audio_id}.mp3';audio.export(target,format='mp3',bitrate='128k',parameters=['-ac','1','-ar','44100'])
+    return {'id':audio_id,'duration_seconds':round(len(audio)/1000,1),'kind':kind,'intents':sorted(set(intents)),'turns':len(turns)}
 
 async def main():
-    data = json.loads(MANIFEST.read_text(encoding='utf-8'))
-    if not data:
-        raise RuntimeError('Manifesto de áudio vazio.')
-
-    semaphore = asyncio.Semaphore(MAX_CONCURRENT_SYNTH)
-    results = []
-    # Um episódio por vez preserva estabilidade; os trechos de cada episódio são paralelizados.
-    for audio_id, item in data.items():
-        result = await render_one(audio_id, item, semaphore)
-        if result:
-            results.append(result)
-
-    spec = {
-        'voice': VOICE,
-        'profile': 'Ampulheta N2: voz masculina pt-BR, pausas editoriais, compressão e normalização',
-        'opening_silence_ms': OPENING_SILENCE_MS,
-        'ending_silence_ms': ENDING_SILENCE_MS,
-        'target_dbfs': TARGET_DBFS,
-        'format': 'MP3 128 kbps, mono, 44.1 kHz',
-        'tracks': [{'id': audio_id, 'duration_seconds': duration} for audio_id, duration in results],
-    }
-    (OUT / 'audio-spec.json').write_text(json.dumps(spec, ensure_ascii=False, indent=2), encoding='utf-8')
-
-    expected = set(data.keys())
-    produced = {p.stem for p in OUT.glob('*.mp3')}
-    missing = sorted(expected - produced)
-    if missing:
-        raise RuntimeError(f'Faixas não geradas: {missing}')
-
-    shutil.rmtree(TMP, ignore_errors=True)
-    print(f'Concluído: {len(results)} faixas no perfil N2.')
-
+    data=json.loads(MANIFEST.read_text(encoding='utf-8'))
+    if not data:raise RuntimeError('Manifesto de áudio vazio')
+    sem=asyncio.Semaphore(MAX_CONCURRENT_SYNTH);results=[]
+    for audio_id,item in data.items():
+        r=await render_one(audio_id,item,sem)
+        if r:results.append(r)
+    spec={'version':VERSION,'voice':VOICE,'profile':'N3-C Natural — Sono em Dia','prosody':'semantic-intent + deterministic-content-jitter','ambient_audio':False,
+          'opening_silence_ms':OPENING_SILENCE_MS,'ending_silence_ms':ENDING_SILENCE_MS,'target_dbfs':TARGET_DBFS,'peak_ceiling_dbfs':-1.2,
+          'format':'MP3 128 kbps, mono, 44.1 kHz','tracks':results}
+    (OUT/'audio-spec.json').write_text(json.dumps(spec,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    expected=set(data);produced={p.stem for p in OUT.glob('*.mp3')};missing=sorted(expected-produced)
+    if missing:raise RuntimeError(f'Faixas não geradas: {missing}')
+    shutil.rmtree(TMP,ignore_errors=True);print(f'Concluído: {len(results)} faixas N3-C.')
 
 asyncio.run(main())
