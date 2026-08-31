@@ -1,0 +1,10 @@
+{
+  "frozen_at": "2026-08-31",
+  "baseline": "N2 Sono em Dia / Ampulheta",
+  "source_commit_before_n3_work": "59099cb280a62753da5fcc859c9cc39f27585e2e",
+  "audio_path": "audio/",
+  "voice": "pt-BR-AntonioNeural",
+  "format": "MP3 128 kbps, mono, 44.1 kHz",
+  "rollback": "As masters N2 permanecem recuperáveis pelo commit congelado e pelo histórico Git. A migração N3 reutiliza os mesmos nomes públicos para evitar quebra de URLs, mas não elimina o baseline histórico.",
+  "runtime_policy": "Após aprovação do workflow N3, o runtime continua usando os mesmos URLs, agora contendo masters N3-C."
+}
