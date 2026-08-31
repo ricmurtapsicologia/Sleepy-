@@ -1,4 +1,4 @@
-name: Generate natural audio
+name: Generate N3 Natural audio
 
 on:
   push:
@@ -7,14 +7,15 @@ on:
       - 'js/content.js'
       - 'scripts/export-audio.js'
       - 'scripts/generate-audio.py'
+      - 'AUDIO_N3_STANDARD.md'
       - '.github/workflows/generate-audio.yml'
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 permissions:
   contents: write
 
 concurrency:
-  group: sono-audio-generation
+  group: sono-audio-n3
   cancel-in-progress: true
 
 jobs:
@@ -31,39 +32,44 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-
-      - name: Install N2 audio renderer
+      - name: Install N3 renderer
         run: |
-          sudo apt-get update
+          sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
           python -m pip install --upgrade pip
           pip install edge-tts==7.2.8 pydub
-
       - name: Export scripts
         run: node scripts/export-audio.js /tmp/sono-audios.json
-
-      - name: Generate Ampulheta N2 pt-BR male tracks
+      - name: Generate N3-C pt-BR tracks
         env:
           SONO_VOICE: pt-BR-AntonioNeural
         run: python scripts/generate-audio.py /tmp/sono-audios.json audio
-
-      - name: Verify generated tracks
+      - name: Smoke test N3
         run: |
-          test "$(find audio -maxdepth 1 -type f -name '*.mp3' | wc -l)" -ge 15
-          test -f audio/welcome.mp3
-          test -f audio/module1.mp3
-          test -f audio/slow.mp3
-          ffprobe -v error -show_entries stream=codec_name,channels,sample_rate -of default=nw=1 audio/welcome.mp3
-
+          python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          files=sorted(Path('audio').glob('*.mp3'))
+          assert len(files)>=15
+          spec=json.loads(Path('audio/audio-spec.json').read_text(encoding='utf-8'))
+          assert spec['version']=='n3-20260831'
+          assert spec['profile'].startswith('N3-C')
+          assert spec['ambient_audio'] is False
+          for p in files:
+              info=json.loads(subprocess.check_output(['ffprobe','-v','error','-select_streams','a:0','-show_entries','stream=channels,sample_rate,duration','-of','json',str(p)],text=True))['streams'][0]
+              assert int(info['channels'])==1 and int(info['sample_rate'])==44100 and float(info['duration'])>0
+          idx=Path('index.html').read_text(encoding='utf-8')
+          alljs='\n'.join(p.read_text(encoding='utf-8',errors='ignore') for p in Path('js').glob('*.js'))
+          assert 'SpeechSynthesisUtterance' not in idx+alljs
+          assert 'speechSynthesis.speak' not in idx+alljs
+          print(f'PASS: {len(files)} faixas N3-C; mono 44.1 kHz; browser TTS ausente.')
+          PY
       - name: Commit generated tracks
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add audio/*.mp3 audio/audio-spec.json
-          if git diff --cached --quiet; then
-            echo "No audio changes"
-            exit 0
-          fi
-          git commit -m "build: gerar audios no perfil N2 Ampulheta"
+          if git diff --cached --quiet; then echo "No audio changes"; exit 0; fi
+          git commit -m "build: gerar audios no perfil N3 Natural"
           git pull --rebase --autostash origin main
           git push origin HEAD:main
