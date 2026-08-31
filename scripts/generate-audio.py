@@ -29,16 +29,18 @@ SOFT={'mas','porém','porem','contudo','entretanto','porque','quando','enquanto'
 INSTRUCTIONS=('observe','imagine','pense','respire','inspire','expire','exale','perceba','note','sinta','coloque','apoie','mantenha','deixe','permita','guarde','faça','faca','tente','olhe','escute','volte')
 REFLECTIVE=('talvez','por enquanto','agora','às vezes','as vezes','vale lembrar','repare','considere','uma possibilidade','isso pode')
 CONCLUSION=('em resumo','para concluir','por fim','em síntese','em sintese','o ponto principal','leve com você','leve com voce')
+PRON={r'\bTCC-I\b':'T C C I',r'\bTCC\b':'T C C',r'\bRPD\b':'R P D',r'\bPSP\b':'P S P',r'\bATS\b':'A T S',r'\bCBMMG\b':'C B M M G',r'\bOMS\b':'O M S'}
 
 
 def norm(text:str)->str:return re.sub(r'\s+',' ',text or '').strip()
-
 def tokens(text:str):return re.findall(r'[\wÀ-ÿ]+',text.lower(),flags=re.UNICODE)
-
+def speakable(text:str)->str:
+    out=text
+    for pat,repl in PRON.items():out=re.sub(pat,repl,out,flags=re.I)
+    return norm(out)
 def stable(text:str,low:int,high:int,salt:str)->int:
     h=hashlib.sha256((salt+'|'+norm(text)).encode()).digest();u=int.from_bytes(h[:4],'big')/0xffffffff
     return low+int(round(u*(high-low)))
-
 def intent(text:str)->str:
     t=norm(text);low=t.lower()
     if t.endswith('?'):return 'question'
@@ -47,7 +49,6 @@ def intent(text:str)->str:
     if low.startswith(CONCLUSION):return 'conclusion'
     if t.endswith('!'):return 'emphasis'
     return 'explain'
-
 def breath_units(text:str)->list[str]:
     text=norm(text);out=[]
     for sentence in [s.strip() for s in re.split(r'(?<=[.!?…])\s+',text) if s.strip()]:
@@ -55,8 +56,7 @@ def breath_units(text:str)->list[str]:
         if len(words)<=20:out.append(sentence);continue
         start=0
         while len(words)-start>20:
-            lo=start+9;hi=min(start+20,len(words));target=min(start+14,hi)
-            candidates=[]
+            lo=start+9;hi=min(start+20,len(words));target=min(start+14,hi);candidates=[]
             for i in range(lo,hi):
                 w=re.sub(r'^[^\wÀ-ÿ]+|[^\wÀ-ÿ]+$','',words[i].lower())
                 if w in SOFT:candidates.append(i)
@@ -67,17 +67,13 @@ def breath_units(text:str)->list[str]:
         if start<len(words):out.append(' '.join(words[start:]).strip())
     if tokens(' '.join(out))!=tokens(text):raise RuntimeError('Gate lexical N3 falhou')
     return out or [text]
-
 def prosody(kind:str,text:str):
-    calm=kind=='calm';i=intent(text)
-    rate=-9 if calm else -4;pitch=-2 if calm else -1
+    calm=kind=='calm';i=intent(text);rate=-9 if calm else -4;pitch=-2 if calm else -1
     rate += {'explain':0,'question':1,'instruction':-3,'reflective':-3,'conclusion':-2,'emphasis':1}[i]
     pitch += {'explain':0,'question':2,'instruction':-1,'reflective':-1,'conclusion':-1,'emphasis':1}[i]
     rate+=stable(text,-1,1,'rate');pitch+=stable(text,-1,1,'pitch')
-    if calm:
-        ranges={'explain':(650,1000),'question':(850,1400),'instruction':(1300,2400),'reflective':(1100,2000),'conclusion':(900,1400),'emphasis':(650,950)}
-    else:
-        ranges={'explain':(390,650),'question':(480,760),'instruction':(750,1200),'reflective':(720,1150),'conclusion':(650,1050),'emphasis':(390,650)}
+    if calm:ranges={'explain':(650,1000),'question':(850,1400),'instruction':(1300,2400),'reflective':(1100,2000),'conclusion':(900,1400),'emphasis':(650,950)}
+    else:ranges={'explain':(390,650),'question':(480,760),'instruction':(750,1200),'reflective':(720,1150),'conclusion':(650,1050),'emphasis':(390,650)}
     lo,hi=ranges[i];pause=stable(text,lo,hi,'pause')
     return i,f'{max(-14,min(5,rate)):+d}%',f'{max(-5,min(5,pitch)):+d}Hz',pause
 
@@ -85,7 +81,7 @@ async def synth(text,rate,pitch,path,sem):
     async with sem:
         for attempt in range(1,4):
             try:
-                c=edge_tts.Communicate(text=text,voice=VOICE,rate=rate,pitch=pitch,volume='+0%')
+                c=edge_tts.Communicate(text=speakable(text),voice=VOICE,rate=rate,pitch=pitch,volume='+0%')
                 await asyncio.wait_for(c.save(str(path)),timeout=SYNTH_TIMEOUT_SECONDS);return
             except Exception:
                 if attempt==3:raise
@@ -118,7 +114,7 @@ async def main():
     for audio_id,item in data.items():
         r=await render_one(audio_id,item,sem)
         if r:results.append(r)
-    spec={'version':VERSION,'voice':VOICE,'profile':'N3-C Natural — Sono em Dia','prosody':'semantic-intent + deterministic-content-jitter','ambient_audio':False,
+    spec={'version':VERSION,'voice':VOICE,'profile':'N3-C Natural — Sono em Dia','prosody':'semantic-intent + deterministic-content-jitter','pronunciation_dictionary':True,'ambient_audio':False,
           'opening_silence_ms':OPENING_SILENCE_MS,'ending_silence_ms':ENDING_SILENCE_MS,'target_dbfs':TARGET_DBFS,'peak_ceiling_dbfs':-1.2,
           'format':'MP3 128 kbps, mono, 44.1 kHz','tracks':results}
     (OUT/'audio-spec.json').write_text(json.dumps(spec,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
