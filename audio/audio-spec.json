@@ -3,6 +3,7 @@
   "voice": "pt-BR-AntonioNeural",
   "profile": "N3-C Natural — Sono em Dia",
   "prosody": "semantic-intent + deterministic-content-jitter",
+  "pronunciation_dictionary": true,
   "ambient_audio": false,
   "opening_silence_ms": 150,
   "ending_silence_ms": 280,
@@ -51,7 +52,7 @@
     },
     {
       "id": "module4",
-      "duration_seconds": 69.9,
+      "duration_seconds": 70.0,
       "kind": "explain",
       "intents": [
         "explain",
